@@ -1,0 +1,48 @@
+terraform {
+  required_version = "{{terraform.terraform_14_version}}"
+
+  backend "s3" {
+    bucket         = "{{terraform.state_file_bucket}}"
+    key            = "terraform/burendo/github/burendo-github-config.tfstate"
+    region         = "{{terraform.state_file_region}}"
+    encrypt        = true
+    kms_key_id     = "arn:aws:kms:eu-west-1:{{terraform.state_file_account}}:key/{{terraform.state_file_kms_key}}"
+    dynamodb_table = "remote_state_locks"
+  }
+
+  required_providers {
+    aws = {
+      version = "~> 3.1"
+    }
+
+    github = {
+      version = "~> 2.6.1"
+    }
+  } 
+}
+
+locals {
+  environment = terraform.workspace == "default" ? "management-dev" : terraform.workspace
+  account = { {% for key, value in accounts.items() %}
+      {{key}} = "{{value}}"{% endfor %}
+    }
+
+  admin_team = 5127148
+  
+}
+
+variable "assume_role" {
+  default = "ci"
+}
+
+variable "region" {
+  default = "eu-west-2"
+}
+
+provider "aws" {
+  region  = var.region
+
+  assume_role {
+    role_arn = "arn:aws:iam::${lookup(local.account, local.environment)}:role/${var.assume_role}"
+  }
+}
