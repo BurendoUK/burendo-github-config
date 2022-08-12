@@ -31,35 +31,26 @@ resource "github_team_repository" "generator_aws_api_admin" {
   permission = "admin"
 }
 
-resource "github_branch_protection" "generator_aws_api_main" {
-  pattern        = github_repository.generator_aws_api.default_branch
-  repository_id  = github_repository.generator_aws_api.name
-  enforce_admins = false
+# resource "github_branch_protection" "generator_aws_api_main" {
+#   pattern        = github_repository.generator_aws_api.default_branch
+#   repository_id  = github_repository.generator_aws_api.name
+#   enforce_admins = false
 
-  required_status_checks {
-    strict = true
-  }
+#   required_status_checks {
+#     strict = true
+#   }
 
-  required_pull_request_reviews {
-    dismiss_stale_reviews      = true
-    require_code_owner_reviews = true
-  }
-}
+#   required_pull_request_reviews {
+#     dismiss_stale_reviews      = true
+#     require_code_owner_reviews = true
+#   }
+# }
 
 resource "github_issue_label" "generator_aws_api" {
   for_each   = { for common_label in local.common_labels : common_label.name => common_label }
   color      = each.value.colour
   name       = each.value.name
   repository = github_repository.generator_aws_api.name
-}
-
-resource "null_resource" "generator_aws_api" {
-  triggers = {
-    repo = github_repository.generator_aws_api.name
-  }
-  provisioner "local-exec" {
-    command = "./initial-commit.sh ${github_repository.generator_aws_api.name} '${github_repository.generator_aws_api.description}' ${github_repository.generator_aws_api.template.0.repository}"
-  }
 }
 
 resource "github_actions_secret" "generator_aws_api_terraform_version" {

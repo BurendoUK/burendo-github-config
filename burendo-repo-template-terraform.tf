@@ -54,15 +54,6 @@ resource "github_issue_label" "burendo_repo_template_terraform" {
   repository = github_repository.burendo_repo_template_terraform.name
 }
 
-resource "null_resource" "burendo_repo_template_terraform" {
-  triggers = {
-    repo = github_repository.burendo_repo_template_terraform.name
-  }
-  provisioner "local-exec" {
-    command = "./initial-commit.sh ${github_repository.burendo_repo_template_terraform.name} '${github_repository.burendo_repo_template_terraform.description}' ${github_repository.burendo_repo_template_terraform.template.0.repository}"
-  }
-}
-
 resource "github_actions_secret" "burendo_repo_template_terraform_terraform_version" {
   repository      = github_repository.burendo_repo_template_terraform.name
   secret_name     = "TERRAFORM_VERSION"

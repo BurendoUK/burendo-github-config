@@ -36,8 +36,7 @@ resource "github_branch_protection" "burendo_github_config_main" {
   enforce_admins = false
 
   required_status_checks {
-    strict   = true
-    contexts = ["ci-ci/status"]
+    strict = true
   }
 
   required_pull_request_reviews {
@@ -51,13 +50,4 @@ resource "github_issue_label" "burendo_github_config" {
   color      = each.value.colour
   name       = each.value.name
   repository = github_repository.burendo_github_config.name
-}
-
-resource "null_resource" "burendo_github_config" {
-  triggers = {
-    repo = github_repository.burendo_github_config.name
-  }
-  provisioner "local-exec" {
-    command = "./initial-commit.sh ${github_repository.burendo_github_config.name} '${github_repository.burendo_github_config.description}' ${github_repository.burendo_github_config.template.0.repository}"
-  }
 }

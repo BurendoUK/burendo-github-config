@@ -1,6 +1,7 @@
 resource "github_repository" "example" {
   name             = "example"
   description      = "example"
+  visibility       = "public"
   auto_init        = false
 
   allow_merge_commit     = false
@@ -37,7 +38,6 @@ resource "github_branch_protection" "example_main" {
 
   required_status_checks {
     strict = true
-    contexts = ["container-build-and-scan"]
   }
 
   required_pull_request_reviews {

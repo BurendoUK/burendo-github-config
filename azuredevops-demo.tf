@@ -31,35 +31,26 @@ resource "github_team_repository" "azuredevops_demo_admin" {
   permission = "admin"
 }
 
-resource "github_branch_protection" "azuredevops_demo_main" {
-  pattern        = github_repository.azuredevops_demo.default_branch
-  repository_id  = github_repository.azuredevops_demo.name
-  enforce_admins = false
+# resource "github_branch_protection" "azuredevops_demo_main" {
+#   pattern        = github_repository.azuredevops_demo.default_branch
+#   repository_id  = github_repository.azuredevops_demo.name
+#   enforce_admins = false
 
-  required_status_checks {
-    strict = true
-  }
+#   required_status_checks {
+#     strict = true
+#   }
 
-  required_pull_request_reviews {
-    dismiss_stale_reviews      = true
-    require_code_owner_reviews = true
-  }
-}
+#   required_pull_request_reviews {
+#     dismiss_stale_reviews      = true
+#     require_code_owner_reviews = true
+#   }
+# }
 
 resource "github_issue_label" "azuredevops_demo" {
   for_each   = { for common_label in local.common_labels : common_label.name => common_label }
   color      = each.value.colour
   name       = each.value.name
   repository = github_repository.azuredevops_demo.name
-}
-
-resource "null_resource" "azuredevops_demo" {
-  triggers = {
-    repo = github_repository.azuredevops_demo.name
-  }
-  provisioner "local-exec" {
-    command = "./initial-commit.sh ${github_repository.azuredevops_demo.name} '${github_repository.azuredevops_demo.description}' ${github_repository.azuredevops_demo.template.0.repository}"
-  }
 }
 
 resource "github_actions_secret" "azuredevops_demo_terraform_version" {

@@ -31,34 +31,24 @@ resource "github_team_repository" "burendo_secrets_config_admin" {
   permission = "admin"
 }
 
-resource "github_branch_protection" "burendo_secrets_config_main" {
-  pattern        = github_repository.burendo_secrets_config.default_branch
-  repository_id  = github_repository.burendo_secrets_config.name
-  enforce_admins = false
+# resource "github_branch_protection" "burendo_secrets_config_main" {
+#   pattern        = github_repository.burendo_secrets_config.default_branch
+#   repository_id  = github_repository.burendo_secrets_config.name
+#   enforce_admins = false
 
-  required_status_checks {
-    strict   = true
-    contexts = ["ci-ci/status"]
-  }
+#   required_status_checks {
+#     strict   = true
+#   }
 
-  required_pull_request_reviews {
-    dismiss_stale_reviews      = true
-    require_code_owner_reviews = true
-  }
-}
+#   required_pull_request_reviews {
+#     dismiss_stale_reviews      = true
+#     require_code_owner_reviews = true
+#   }
+# }
 
 resource "github_issue_label" "burendo_secrets_config" {
   for_each   = { for common_label in local.common_labels : common_label.name => common_label }
   color      = each.value.colour
   name       = each.value.name
   repository = github_repository.burendo_secrets_config.name
-}
-
-resource "null_resource" "burendo_secrets_config" {
-  triggers = {
-    repo = github_repository.burendo_secrets_config.name
-  }
-  provisioner "local-exec" {
-    command = "./initial-commit.sh ${github_repository.burendo_secrets_config.name} '${github_repository.burendo_secrets_config.description}' ${github_repository.burendo_secrets_config.template.0.repository}"
-  }
 }

@@ -52,15 +52,6 @@ resource "github_issue_label" "burendo_githooks" {
   repository = github_repository.burendo_githooks.name
 }
 
-resource "null_resource" "burendo_githooks" {
-  triggers = {
-    repo = github_repository.burendo_githooks.name
-  }
-  provisioner "local-exec" {
-    command = "./initial-commit.sh ${github_repository.burendo_githooks.name} '${github_repository.burendo_githooks.description}' ${github_repository.burendo_githooks.template.0.repository}"
-  }
-}
-
 resource "github_actions_secret" "burendo_githooks_terraform_version" {
   repository      = github_repository.burendo_githooks.name
   secret_name     = "TERRAFORM_VERSION"
