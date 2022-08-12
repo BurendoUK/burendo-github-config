@@ -14,6 +14,18 @@ This process is currently intended for use with *public*, not private repositori
 1. Replace every instance of `example` with the name of your repo using underscores.
    1. For Terraform repos also update the `local.example_pipeline_name` key and value. This allows the pipeline name to differ from the repo, and typically be a shorter name.
 
+## How to add users to teams
+
+Add a new resource to the `users.tf` file, appending their GitHub username to the resource.  There are examples available. 
+
+There are three teams to choose from:
+
+`Burendo` - This is the default team for any Burendo employee that is not part of the engineering practice, and likely does not require any elevated privileges.  This team is added to each repo with `read/write` access.
+`Engineering` - This team has elevated privileges to all repositories by default, and consists of the Engineering Practice members.
+`Automation` - This is for service users aka, bots.
+
+ By default you should create users with the `member` role. These roles do not have any effect inside repositories and should remain as such.  Repository privileges are controlled in the repositories themselves.
+
 ### Naming convention
 Repo names should avoid using any technology within its name, in case the technology changes which would lead to confusion.
 Infrastructure repos should be prefixed with platform e.g. `burendo-aws`.
