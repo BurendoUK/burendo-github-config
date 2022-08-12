@@ -1,5 +1,5 @@
 resource "github_repository" "burendo_handbook" {
-  name        = "burendo_handbook"
+  name        = "burendo-handbook"
   description = "The Burendo Handbook"
   visibility  = "private"
   auto_init   = false
