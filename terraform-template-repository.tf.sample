@@ -34,7 +34,7 @@ resource "github_team_repository" "example-admin" {
 }
 
 resource "github_branch_protection" "example_master" {
-  branch         = github_repository.example.default_branch
+  pattern        = github_repository.example.default_branch
   repository_id     = github_repository.example.name
   enforce_admins = false
 

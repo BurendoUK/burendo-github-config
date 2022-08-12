@@ -31,7 +31,7 @@ resource "github_team_repository" "burendo_handbook-admin" {
 }
 
 resource "github_branch_protection" "burendo_handbook_master" {
-  branch         = github_repository.burendo_handbook.default_branch
+  pattern        = github_repository.burendo_handbook.default_branch
   repository_id  = github_repository.burendo_handbook.name
   enforce_admins = false
 

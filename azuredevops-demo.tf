@@ -31,7 +31,7 @@ resource "github_team_repository" "azuredevops_demo-admin" {
 }
 
 resource "github_branch_protection" "azuredevops_demo_master" {
-  branch         = github_repository.azuredevops_demo.default_branch
+  pattern        = github_repository.azuredevops_demo.default_branch
   repository_id  = github_repository.azuredevops_demo.name
   enforce_admins = false
 

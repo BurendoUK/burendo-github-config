@@ -35,7 +35,7 @@ resource "github_team_repository" "burendo_secrets_config-admin" {
 }
 
 resource "github_branch_protection" "burendo_secrets_config_master" {
-  branch         = github_repository.burendo_secrets_config.default_branch
+  pattern        = github_repository.burendo_secrets_config.default_branch
   repository_id  = github_repository.burendo_secrets_config.name
   enforce_admins = false
 

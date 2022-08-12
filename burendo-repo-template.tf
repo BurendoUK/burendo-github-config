@@ -32,7 +32,7 @@ resource "github_team_repository" "burendo_repo_template-admin" {
 }
 
 resource "github_branch_protection" "burendo_repo_template_master" {
-  branch         = github_repository.burendo_repo_template.default_branch
+  pattern        = github_repository.burendo_repo_template.default_branch
   repository_id  = github_repository.burendo_repo_template.name
   enforce_admins = false
 
