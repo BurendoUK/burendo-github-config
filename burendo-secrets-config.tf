@@ -31,6 +31,8 @@ resource "github_team_repository" "burendo_secrets_config_admin" {
   permission = "admin"
 }
 
+# Commented out until we establish the Pro license
+#
 # resource "github_branch_protection" "burendo_secrets_config_main" {
 #   pattern        = github_repository.burendo_secrets_config.default_branch
 #   repository_id  = github_repository.burendo_secrets_config.name

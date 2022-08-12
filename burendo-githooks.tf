@@ -1,6 +1,7 @@
 resource "github_repository" "burendo_githooks" {
   name        = "burendo-githooks"
   description = "Default Git hooks for Burendo repositories"
+  visibility  = "public"
   auto_init   = false
 
   allow_merge_commit     = false

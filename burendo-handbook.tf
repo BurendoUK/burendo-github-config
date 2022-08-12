@@ -31,6 +31,8 @@ resource "github_team_repository" "burendo_handbook_admin" {
   permission = "admin"
 }
 
+# Commented out until we establish the Pro license
+# 
 # resource "github_branch_protection" "burendo_handbook_main" {
 #   pattern        = github_repository.burendo_handbook.default_branch
 #   repository_id  = github_repository.burendo_handbook.name

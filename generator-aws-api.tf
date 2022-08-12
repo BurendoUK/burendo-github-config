@@ -31,6 +31,8 @@ resource "github_team_repository" "generator_aws_api_admin" {
   permission = "admin"
 }
 
+# Commented out until we establish the Pro license
+#
 # resource "github_branch_protection" "generator_aws_api_main" {
 #   pattern        = github_repository.generator_aws_api.default_branch
 #   repository_id  = github_repository.generator_aws_api.name

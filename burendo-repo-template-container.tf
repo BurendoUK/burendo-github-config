@@ -1,6 +1,7 @@
 resource "github_repository" "burendo_repo_template_container" {
   name        = "burendo-repo-template-container"
   description = "burendo-repo-template-container"
+  visibility  = "public"
   auto_init   = false
 
   allow_merge_commit     = false

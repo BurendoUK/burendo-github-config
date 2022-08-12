@@ -1,6 +1,7 @@
 resource "github_repository" "burendo_github_config" {
   name        = "burendo-github-config"
   description = "IAC repository of all GitHub repositories in this Org"
+  visibility  = "public"
   auto_init   = false
 
   allow_merge_commit     = false

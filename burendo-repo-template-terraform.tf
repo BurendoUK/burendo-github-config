@@ -1,6 +1,7 @@
 resource "github_repository" "burendo_repo_template_terraform" {
   name        = "burendo-repo-template-terraform"
   description = "burendo-repo-template-terraform"
+  visibility  = "public"
   auto_init   = false
 
   allow_merge_commit     = false

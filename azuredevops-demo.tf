@@ -1,7 +1,7 @@
 resource "github_repository" "azuredevops_demo" {
   name        = "azuredevops-demo"
   description = "Repo containing the Azure DevOps Demo"
-  visibility  = "private"
+  visibility  = "public"
   auto_init   = false
 
   allow_merge_commit     = false
@@ -31,20 +31,20 @@ resource "github_team_repository" "azuredevops_demo_admin" {
   permission = "admin"
 }
 
-# resource "github_branch_protection" "azuredevops_demo_main" {
-#   pattern        = github_repository.azuredevops_demo.default_branch
-#   repository_id  = github_repository.azuredevops_demo.name
-#   enforce_admins = false
+resource "github_branch_protection" "azuredevops_demo_main" {
+  pattern        = github_repository.azuredevops_demo.default_branch
+  repository_id  = github_repository.azuredevops_demo.name
+  enforce_admins = false
 
-#   required_status_checks {
-#     strict = true
-#   }
+  required_status_checks {
+    strict = true
+  }
 
-#   required_pull_request_reviews {
-#     dismiss_stale_reviews      = true
-#     require_code_owner_reviews = true
-#   }
-# }
+  required_pull_request_reviews {
+    dismiss_stale_reviews      = true
+    require_code_owner_reviews = true
+  }
+}
 
 resource "github_issue_label" "azuredevops_demo" {
   for_each   = { for common_label in local.common_labels : common_label.name => common_label }

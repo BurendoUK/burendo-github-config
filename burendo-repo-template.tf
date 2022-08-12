@@ -1,6 +1,7 @@
 resource "github_repository" "burendo_repo_template" {
   name        = "burendo-repo-template"
   description = "This repo contains Makefile to fit the standard pattern. This repo is a base to create new non-Terraform repos, adding the githooks submodule, making the repo ready for use. After cloning this repo, please run: make bootstrap"
+  visibility  = "public"
   auto_init   = false
 
   allow_merge_commit     = false
