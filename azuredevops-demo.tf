@@ -21,6 +21,7 @@ resource "github_repository" "azuredevops_demo" {
 
 resource "github_team_repository" "azuredevops_demo_burendo" {
   repository = github_repository.azuredevops_demo.name
+  team_id    = github_team.burendo.id
   permission = "push"
 }
 

@@ -21,6 +21,7 @@ resource "github_repository" "generator_aws_api" {
 
 resource "github_team_repository" "generator_aws_api_burendo" {
   repository = github_repository.generator_aws_api.name
+  team_id    = github_team.burendo.id
   permission = "push"
 }
 

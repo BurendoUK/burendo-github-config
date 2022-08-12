@@ -20,6 +20,7 @@ resource "github_repository" "example" {
 
 resource "github_team_repository" "example_burendo" {
   repository = github_repository.example.name
+  team_id    = github_team.burendo.id
   permission = "push"
 }
 

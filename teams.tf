@@ -3,6 +3,11 @@ resource "github_team" "engineering" {
   privacy = "closed"
 }
 
+resource "github_team" "burendo" {
+  name    = "burendo"
+  privacy = "closed"
+}
+
 resource "github_team" "automation" {
   name    = "automation"
   privacy = "secret"

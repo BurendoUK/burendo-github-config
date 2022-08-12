@@ -22,6 +22,7 @@ resource "github_repository" "burendo_repo_template_terraform" {
 
 resource "github_team_repository" "burendo_repo_template_terraform_burendo" {
   repository = github_repository.burendo_repo_template_terraform.name
+  team_id    = github_team.burendo.id
   permission = "push"
 }
 

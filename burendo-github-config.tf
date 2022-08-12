@@ -24,6 +24,7 @@ resource "github_repository" "burendo_github_config" {
 
 resource "github_team_repository" "burendo_github_config_burendo" {
   repository = github_repository.burendo_github_config.name
+  team_id    = github_team.burendo.id
   permission = "push"
 }
 
@@ -62,25 +63,5 @@ resource "null_resource" "burendo_github_config" {
   }
   provisioner "local-exec" {
     command = "./initial-commit.sh ${github_repository.burendo_github_config.name} '${github_repository.burendo_github_config.description}' ${github_repository.burendo_github_config.template.0.repository}"
-  }
-}
-
-resource "github_repository_webhook" "burendo_github_config" {
-  repository = github_repository.burendo_github_config.name
-  events     = ["push"]
-
-  configuration {
-    url          = "https://${var.aws_ci_domain_name}/api/v1/teams/${var.aws_ci_team}/pipelines/${local.burendo_github_config_pipeline_name}/resources/${github_repository.burendo_github_config.name}/check/webhook?webhook_token=${var.github_webhook_token}"
-    content_type = "form"
-  }
-}
-
-resource "github_repository_webhook" "burendo_github_config_pr" {
-  repository = github_repository.burendo_github_config.name
-  events     = ["pull_request"]
-
-  configuration {
-    url          = "https://${var.aws_ci_domain_name}/api/v1/teams/${var.aws_ci_team}/pipelines/${local.burendo_github_config_pipeline_name}/resources/${github_repository.burendo_github_config.name}-pr/check/webhook?webhook_token=${var.github_webhook_token}"
-    content_type = "form"
   }
 }

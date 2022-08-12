@@ -22,6 +22,7 @@ resource "github_repository" "burendo_repo_template_container" {
 
 resource "github_team_repository" "burendo_repo_template_container_burendo" {
   repository = github_repository.burendo_repo_template_container.name
+  team_id    = github_team.burendo.id
   permission = "push"
 }
 
