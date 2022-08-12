@@ -1,6 +1,7 @@
 resource "github_repository" "burendo_githooks" {
   name        = "burendo-githooks"
   description = "Default Git hooks for Burendo repositories"
+  visibility  = "public"
   auto_init   = false
 
   allow_merge_commit     = false
@@ -50,15 +51,6 @@ resource "github_issue_label" "burendo_githooks" {
   color      = each.value.colour
   name       = each.value.name
   repository = github_repository.burendo_githooks.name
-}
-
-resource "null_resource" "burendo_githooks" {
-  triggers = {
-    repo = github_repository.burendo_githooks.name
-  }
-  provisioner "local-exec" {
-    command = "./initial-commit.sh ${github_repository.burendo_githooks.name} '${github_repository.burendo_githooks.description}' ${github_repository.burendo_githooks.template.0.repository}"
-  }
 }
 
 resource "github_actions_secret" "burendo_githooks_terraform_version" {

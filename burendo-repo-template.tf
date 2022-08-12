@@ -1,6 +1,7 @@
 resource "github_repository" "burendo_repo_template" {
   name        = "burendo-repo-template"
   description = "This repo contains Makefile to fit the standard pattern. This repo is a base to create new non-Terraform repos, adding the githooks submodule, making the repo ready for use. After cloning this repo, please run: make bootstrap"
+  visibility  = "public"
   auto_init   = false
 
   allow_merge_commit     = false
@@ -47,15 +48,6 @@ resource "github_issue_label" "burendo_repo_template" {
   color      = each.value.colour
   name       = each.value.name
   repository = github_repository.burendo_repo_template.name
-}
-
-resource "null_resource" "burendo_repo_template" {
-  triggers = {
-    repo = github_repository.burendo_repo_template.name
-  }
-  provisioner "local-exec" {
-    command = "./initial-commit.sh ${github_repository.burendo_repo_template.name} '${github_repository.burendo_repo_template.description}' ${github_repository.burendo_repo_template.template.0.repository}"
-  }
 }
 
 resource "github_actions_secret" "burendo_repo_template_terraform_version" {

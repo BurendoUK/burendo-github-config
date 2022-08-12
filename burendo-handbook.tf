@@ -31,35 +31,28 @@ resource "github_team_repository" "burendo_handbook_admin" {
   permission = "admin"
 }
 
-resource "github_branch_protection" "burendo_handbook_main" {
-  pattern        = github_repository.burendo_handbook.default_branch
-  repository_id  = github_repository.burendo_handbook.name
-  enforce_admins = false
+# Commented out until we establish the Pro license
+# 
+# resource "github_branch_protection" "burendo_handbook_main" {
+#   pattern        = github_repository.burendo_handbook.default_branch
+#   repository_id  = github_repository.burendo_handbook.name
+#   enforce_admins = false
 
-  required_status_checks {
-    strict = true
-  }
+#   required_status_checks {
+#     strict = true
+#   }
 
-  required_pull_request_reviews {
-    dismiss_stale_reviews      = true
-    require_code_owner_reviews = true
-  }
-}
+#   required_pull_request_reviews {
+#     dismiss_stale_reviews      = true
+#     require_code_owner_reviews = true
+#   }
+# }
 
 resource "github_issue_label" "burendo_handbook" {
   for_each   = { for common_label in local.common_labels : common_label.name => common_label }
   color      = each.value.colour
   name       = each.value.name
   repository = github_repository.burendo_handbook.name
-}
-
-resource "null_resource" "burendo_handbook" {
-  triggers = {
-    repo = github_repository.burendo_handbook.name
-  }
-  provisioner "local-exec" {
-    command = "./initial-commit.sh ${github_repository.burendo_handbook.name} '${github_repository.burendo_handbook.description}' ${github_repository.burendo_handbook.template.0.repository}"
-  }
 }
 
 resource "github_actions_secret" "burendo_handbook_terraform_version" {

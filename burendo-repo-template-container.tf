@@ -1,6 +1,7 @@
 resource "github_repository" "burendo_repo_template_container" {
   name        = "burendo-repo-template-container"
   description = "burendo-repo-template-container"
+  visibility  = "public"
   auto_init   = false
 
   allow_merge_commit     = false
@@ -52,15 +53,6 @@ resource "github_issue_label" "burendo_repo_template_container" {
   color      = each.value.colour
   name       = each.value.name
   repository = github_repository.burendo_repo_template_container.name
-}
-
-resource "null_resource" "burendo_repo_template_container" {
-  triggers = {
-    repo = github_repository.burendo_repo_template_container.name
-  }
-  provisioner "local-exec" {
-    command = "./initial-commit.sh ${github_repository.burendo_repo_template_container.name} '${github_repository.burendo_repo_template_container.description}' ${github_repository.burendo_repo_template_container.template.0.repository}"
-  }
 }
 
 resource "github_actions_secret" "burendo_repo_template_container_terraform_version" {

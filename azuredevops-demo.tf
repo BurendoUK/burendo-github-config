@@ -1,7 +1,7 @@
 resource "github_repository" "azuredevops_demo" {
   name        = "azuredevops-demo"
   description = "Repo containing the Azure DevOps Demo"
-  visibility  = "private"
+  visibility  = "public"
   auto_init   = false
 
   allow_merge_commit     = false
@@ -51,15 +51,6 @@ resource "github_issue_label" "azuredevops_demo" {
   color      = each.value.colour
   name       = each.value.name
   repository = github_repository.azuredevops_demo.name
-}
-
-resource "null_resource" "azuredevops_demo" {
-  triggers = {
-    repo = github_repository.azuredevops_demo.name
-  }
-  provisioner "local-exec" {
-    command = "./initial-commit.sh ${github_repository.azuredevops_demo.name} '${github_repository.azuredevops_demo.description}' ${github_repository.azuredevops_demo.template.0.repository}"
-  }
 }
 
 resource "github_actions_secret" "azuredevops_demo_terraform_version" {
