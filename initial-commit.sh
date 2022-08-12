@@ -8,8 +8,8 @@ TEMPLATE_REPO_NAME=$3
 TEMPLATE_REPO_NAME_UNDERSCORE=$(echo $TEMPLATE_REPO_NAME | tr '-' '_')
 NEW_REPO_NAME_UNDERSCORE=$(echo $NEW_REPO_NAME | tr '-' '_')
 
-git config --global user.name "burendoci"
-git config --global user.email "engineering@burendo.com"
+git config --global user.name "${GIT_USERNAME}"
+git config --global user.email "${GIT_EMAIL}"
 
 git clone https://github.com/BurendoUK/$NEW_REPO_NAME
 cd $NEW_REPO_NAME
