@@ -1,7 +1,7 @@
 resource "github_repository" "generator_aws_api" {
   name        = "generator-aws-api"
   description = "Burendo OpenSource API Scaffolder"
-  visibility  = "private"
+  visibility  = "public"
   auto_init   = false
 
   allow_merge_commit     = false
@@ -31,22 +31,20 @@ resource "github_team_repository" "generator_aws_api_admin" {
   permission = "admin"
 }
 
-# Commented out until we establish the Pro license
-#
-# resource "github_branch_protection" "generator_aws_api_main" {
-#   pattern        = github_repository.generator_aws_api.default_branch
-#   repository_id  = github_repository.generator_aws_api.name
-#   enforce_admins = false
+resource "github_branch_protection" "generator_aws_api_main" {
+  pattern        = github_repository.generator_aws_api.default_branch
+  repository_id  = github_repository.generator_aws_api.name
+  enforce_admins = false
 
-#   required_status_checks {
-#     strict = true
-#   }
+  required_status_checks {
+    strict = true
+  }
 
-#   required_pull_request_reviews {
-#     dismiss_stale_reviews      = true
-#     require_code_owner_reviews = true
-#   }
-# }
+  required_pull_request_reviews {
+    dismiss_stale_reviews      = true
+    require_code_owner_reviews = true
+  }
+}
 
 resource "github_issue_label" "generator_aws_api" {
   for_each   = { for common_label in local.common_labels : common_label.name => common_label }
