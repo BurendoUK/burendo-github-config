@@ -25,13 +25,13 @@ resource "github_team_repository" "generator_aws_api_burendo" {
   permission = "push"
 }
 
-resource "github_team_repository" "generator_aws_api-admin" {
+resource "github_team_repository" "generator_aws_api_admin" {
   repository = github_repository.generator_aws_api.name
   team_id    = github_team.engineering.id
   permission = "admin"
 }
 
-resource "github_branch_protection" "generator_aws_api_master" {
+resource "github_branch_protection" "generator_aws_api_main" {
   pattern        = github_repository.generator_aws_api.default_branch
   repository_id  = github_repository.generator_aws_api.name
   enforce_admins = false

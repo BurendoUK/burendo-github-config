@@ -26,13 +26,13 @@ resource "github_team_repository" "burendo_repo_template_burendo" {
   permission = "push"
 }
 
-resource "github_team_repository" "burendo_repo_template-admin" {
+resource "github_team_repository" "burendo_repo_template_admin" {
   repository = github_repository.burendo_repo_template.name
   team_id    = github_team.engineering.id
   permission = "admin"
 }
 
-resource "github_branch_protection" "burendo_repo_template_master" {
+resource "github_branch_protection" "burendo_repo_template_main" {
   pattern        = github_repository.burendo_repo_template.default_branch
   repository_id  = github_repository.burendo_repo_template.name
   enforce_admins = false

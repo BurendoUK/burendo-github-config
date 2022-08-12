@@ -25,13 +25,13 @@ resource "github_team_repository" "burendo_saas_burendo" {
   permission = "push"
 }
 
-resource "github_team_repository" "burendo_saas-admin" {
+resource "github_team_repository" "burendo_saas_admin" {
   repository = github_repository.burendo_saas.name
   team_id    = github_team.engineering.id
   permission = "admin"
 }
 
-resource "github_branch_protection" "burendo_saas_master" {
+resource "github_branch_protection" "burendo_saas_main" {
   pattern        = github_repository.burendo_saas.default_branch
   repository_id  = github_repository.burendo_saas.name
   enforce_admins = false

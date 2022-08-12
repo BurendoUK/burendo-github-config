@@ -25,13 +25,13 @@ resource "github_team_repository" "azuredevops_demo_burendo" {
   permission = "push"
 }
 
-resource "github_team_repository" "azuredevops_demo-admin" {
+resource "github_team_repository" "azuredevops_demo_admin" {
   repository = github_repository.azuredevops_demo.name
   team_id    = github_team.engineering.id
   permission = "admin"
 }
 
-resource "github_branch_protection" "azuredevops_demo_master" {
+resource "github_branch_protection" "azuredevops_demo_main" {
   pattern        = github_repository.azuredevops_demo.default_branch
   repository_id  = github_repository.azuredevops_demo.name
   enforce_admins = false

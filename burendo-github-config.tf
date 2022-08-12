@@ -1,7 +1,3 @@
-locals {
-  burendo_github_config_pipeline_name = "burendo_github_config"
-}
-
 resource "github_repository" "burendo_github_config" {
   name        = "burendo-github-config"
   description = "IAC repository of all GitHub repositories in this Org"
@@ -28,13 +24,13 @@ resource "github_team_repository" "burendo_github_config_burendo" {
   permission = "push"
 }
 
-resource "github_team_repository" "burendo_github_config-admin" {
+resource "github_team_repository" "burendo_github_config_admin" {
   repository = github_repository.burendo_github_config.name
   team_id    = github_team.engineering.id
   permission = "admin"
 }
 
-resource "github_branch_protection" "burendo_github_config_master" {
+resource "github_branch_protection" "burendo_github_config_main" {
   pattern        = github_repository.burendo_github_config.default_branch
   repository_id  = github_repository.burendo_github_config.name
   enforce_admins = false

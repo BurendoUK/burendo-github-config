@@ -1,7 +1,3 @@
-locals {
-  burendo_secrets_config_pipeline_name = "burendo_secrets_config"
-}
-
 resource "github_repository" "burendo_secrets_config" {
   name        = "burendo-secrets-config"
   description = "This repo contains secrets configuration for Burendo's AWS infrastructure."
@@ -29,13 +25,13 @@ resource "github_team_repository" "burendo_secrets_config_burendo" {
   permission = "push"
 }
 
-resource "github_team_repository" "burendo_secrets_config-admin" {
+resource "github_team_repository" "burendo_secrets_config_admin" {
   repository = github_repository.burendo_secrets_config.name
   team_id    = github_team.engineering.id
   permission = "admin"
 }
 
-resource "github_branch_protection" "burendo_secrets_config_master" {
+resource "github_branch_protection" "burendo_secrets_config_main" {
   pattern        = github_repository.burendo_secrets_config.default_branch
   repository_id  = github_repository.burendo_secrets_config.name
   enforce_admins = false

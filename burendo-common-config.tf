@@ -1,7 +1,3 @@
-locals {
-  burendo_common_config_pipeline_name = "burendo_common_config"
-}
-
 resource "github_repository" "burendo_common_config" {
   name        = "burendo-common-config"
   description = "Config and Infrastructure shared amongst many consumers"
@@ -28,13 +24,13 @@ resource "github_team_repository" "burendo_common_config_burendo" {
   permission = "push"
 }
 
-resource "github_team_repository" "burendo_common_config-admin" {
+resource "github_team_repository" "burendo_common_config_admin" {
   repository = github_repository.burendo_common_config.name
   team_id    = github_team.engineering.id
   permission = "admin"
 }
 
-resource "github_branch_protection" "burendo_common_config_master" {
+resource "github_branch_protection" "burendo_common_config_main" {
   pattern        = github_repository.burendo_common_config.default_branch
   repository_id  = github_repository.burendo_common_config.name
   enforce_admins = false
