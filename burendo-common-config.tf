@@ -35,7 +35,7 @@ resource "github_team_repository" "burendo_common_config-admin" {
 
 resource "github_branch_protection" "burendo_common_config_master" {
   branch         = github_repository.burendo_common_config.default_branch
-  repository     = github_repository.burendo_common_config.name
+  repository_id  = github_repository.burendo_common_config.name
   enforce_admins = false
 
   required_status_checks {

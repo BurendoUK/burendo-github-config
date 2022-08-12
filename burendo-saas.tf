@@ -32,7 +32,7 @@ resource "github_team_repository" "burendo_saas-admin" {
 
 resource "github_branch_protection" "burendo_saas_master" {
   branch         = github_repository.burendo_saas.default_branch
-  repository     = github_repository.burendo_saas.name
+  repository_id  = github_repository.burendo_saas.name
   enforce_admins = false
 
   required_status_checks {

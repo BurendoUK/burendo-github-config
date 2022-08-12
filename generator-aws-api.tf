@@ -32,7 +32,7 @@ resource "github_team_repository" "generator_aws_api-admin" {
 
 resource "github_branch_protection" "generator_aws_api_master" {
   branch         = github_repository.generator_aws_api.default_branch
-  repository     = github_repository.generator_aws_api.name
+  repository_id     = github_repository.generator_aws_api.name
   enforce_admins = false
 
   required_status_checks {
