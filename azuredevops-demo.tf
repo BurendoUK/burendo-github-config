@@ -1,6 +1,7 @@
 resource "github_repository" "azuredevops_demo" {
   name        = "azuredevops-demo"
   description = "Repo containing the Azure DevOps Demo"
+  visibility  = "private"
   auto_init   = false
 
   allow_merge_commit     = false

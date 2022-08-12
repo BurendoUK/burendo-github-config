@@ -1,6 +1,7 @@
 resource "github_repository" "burendo_saas" {
   name        = "burendo-saas"
   description = "Demo SaaS subscription application with bells and whistles"
+  visibility  = "private"
   auto_init   = false
 
   allow_merge_commit     = false

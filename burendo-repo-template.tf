@@ -8,6 +8,8 @@ resource "github_repository" "burendo_repo_template" {
   has_issues             = true
   topics                 = local.common_topics
 
+  is_template = true
+
   lifecycle {
     prevent_destroy = true
   }
