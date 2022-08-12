@@ -25,7 +25,7 @@ resource "github_team_repository" "example_burendo" {
 
 resource "github_team_repository" "example-admin" {
   repository = github_repository.example.name
-  team_id    = github_team.burendo.id
+  team_id    = github_team.engineering.id
   permission = "admin"
 }
 
