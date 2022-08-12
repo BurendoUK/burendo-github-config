@@ -1,7 +1,3 @@
-locals {
-  example_pipeline_name = "example"
-}
-
 resource "github_repository" "example" {
   name             = "example"
   description      = "example"
@@ -17,25 +13,26 @@ resource "github_repository" "example" {
   }
 
   template {
-    owner = var.github_organization
+    owner = var.github_org
     repository = "burendo-repo-template-terraform"
   }
 }
 
 resource "github_team_repository" "example_burendo" {
   repository = github_repository.example.name
+  team_id    = github_team.burendo.id
   permission = "push"
 }
 
-resource "github_team_repository" "example-admin" {
+resource "github_team_repository" "example_admin" {
   repository = github_repository.example.name
-  team_id    = github_team.burendo.id
+  team_id    = github_team.engineering.id
   permission = "admin"
 }
 
-resource "github_branch_protection" "example_master" {
-  branch         = github_repository.example.default_branch
-  repository     = github_repository.example.name
+resource "github_branch_protection" "example_main" {
+  pattern        = github_repository.example.default_branch
+  repository_id     = github_repository.example.name
   enforce_admins = false
 
   required_status_checks {
@@ -62,25 +59,5 @@ resource "null_resource" "example" {
   }
   provisioner "local-exec" {
     command = "./initial-commit.sh ${github_repository.example.name} '${github_repository.example.description}' ${github_repository.example.template.0.repository}"
-  }
-}
-
-resource "github_repository_webhook" "example" {
-  repository = github_repository.example.name
-  events     = ["push"]
-
-  configuration {
-    url          = "https://${var.aws_ci_domain_name}/api/v1/teams/${var.aws_ci_team}/pipelines/${local.example_pipeline_name}/resources/${github_repository.example.name}/check/webhook?webhook_token=${var.github_webhook_token}"
-    content_type = "form"
-  }
-}
-
-resource "github_repository_webhook" "example_pr" {
-  repository = github_repository.example.name
-  events     = ["pull_request"]
-
-  configuration {
-    url          = "https://${var.aws_ci_domain_name}/api/v1/teams/${var.aws_ci_team}/pipelines/${local.example_pipeline_name}/resources/${github_repository.example.name}-pr/check/webhook?webhook_token=${var.github_webhook_token}"
-    content_type = "form"
   }
 }

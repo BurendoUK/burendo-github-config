@@ -13,25 +13,26 @@ resource "github_repository" "example" {
   }
 
   template {
-    owner      = var.github_organization
+    owner      = var.github_org
     repository = "container-ecr-template"
   }
 }
 
 resource "github_team_repository" "example_burendo" {
   repository = github_repository.example.name
+  team_id    = github_team.burendo.id
   permission = "push"
 }
 
-resource "github_team_repository" "example-admin" {
+resource "github_team_repository" "example_admin" {
   repository = github_repository.example.name
   team_id    = github_team.engineering.id
   permission = "admin"
 }
 
-resource "github_branch_protection" "example_master" {
-  branch         = github_repository.example.default_branch
-  repository     = github_repository.example.name
+resource "github_branch_protection" "example_main" {
+  pattern        = github_repository.example.default_branch
+  repository_id     = github_repository.example.name
   enforce_admins = false
 
   required_status_checks {

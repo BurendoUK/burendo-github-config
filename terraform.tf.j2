@@ -14,6 +14,10 @@ terraform {
     aws = {
       version = "~> 4.0"
     }
+    github = {
+      source  = "integrations/github"
+      version = "~> 4.0"
+    }
   }
 }
 
@@ -23,4 +27,9 @@ provider "aws" {
   assume_role {
     role_arn = "arn:aws:iam::${lookup(local.account, local.environment)}:role/${var.assume_role}"
   }
+}
+
+provider "github" {
+  token = "{{github.github_token}}"
+  owner = "{{github.github_org}}"
 }
