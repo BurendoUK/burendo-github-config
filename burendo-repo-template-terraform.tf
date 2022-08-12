@@ -8,14 +8,14 @@ resource "github_repository" "burendo_repo_template_terraform" {
   has_issues             = true
   topics                 = local.common_topics
 
-  is_template            = true
+  is_template = true
 
   lifecycle {
     prevent_destroy = true
   }
 
   template {
-    owner      = var.github_organization
+    owner      = var.github_org
     repository = "burendo-repo-template"
   }
 }
@@ -33,7 +33,7 @@ resource "github_team_repository" "burendo_repo_template_terraform-admin" {
 
 resource "github_branch_protection" "burendo_repo_template_terraform_master" {
   branch         = github_repository.burendo_repo_template_terraform.default_branch
-  repository_id     = github_repository.burendo_repo_template_terraform.name
+  repository_id  = github_repository.burendo_repo_template_terraform.name
   enforce_admins = false
 
   required_status_checks {

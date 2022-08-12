@@ -18,7 +18,7 @@ resource "github_repository" "burendo_secrets_config" {
   }
 
   template {
-    owner      = var.github_organization
+    owner      = var.github_org
     repository = "burendo-repo-template-terraform"
   }
 }

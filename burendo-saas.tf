@@ -14,7 +14,7 @@ resource "github_repository" "burendo_saas" {
   }
 
   template {
-    owner      = var.github_organization
+    owner      = var.github_org
     repository = "burendo-repo-template"
   }
 }

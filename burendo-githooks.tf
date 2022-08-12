@@ -13,7 +13,7 @@ resource "github_repository" "burendo_githooks" {
   }
 
   template {
-    owner      = var.github_organization
+    owner      = var.github_org
     repository = "burendo-repo-template"
   }
 }
@@ -31,7 +31,7 @@ resource "github_team_repository" "burendo_githooks-admin" {
 
 resource "github_branch_protection" "burendo_githooks_master" {
   branch         = github_repository.burendo_githooks.default_branch
-  repository_id     = github_repository.burendo_githooks.name
+  repository_id  = github_repository.burendo_githooks.name
   enforce_admins = false
 
   required_status_checks {

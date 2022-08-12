@@ -17,7 +17,7 @@ resource "github_repository" "burendo_github_config" {
   }
 
   template {
-    owner      = var.github_organization
+    owner      = var.github_org
     repository = "burendo-repo-template-terraform"
   }
 }
@@ -35,7 +35,7 @@ resource "github_team_repository" "burendo_github_config-admin" {
 
 resource "github_branch_protection" "burendo_github_config_master" {
   branch         = github_repository.burendo_github_config.default_branch
-  repository_id     = github_repository.burendo_github_config.name
+  repository_id  = github_repository.burendo_github_config.name
   enforce_admins = false
 
   required_status_checks {

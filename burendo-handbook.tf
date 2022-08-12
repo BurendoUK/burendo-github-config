@@ -14,7 +14,7 @@ resource "github_repository" "burendo_handbook" {
   }
 
   template {
-    owner      = var.github_organization
+    owner      = var.github_org
     repository = "burendo-repo-template"
   }
 }
@@ -32,7 +32,7 @@ resource "github_team_repository" "burendo_handbook-admin" {
 
 resource "github_branch_protection" "burendo_handbook_master" {
   branch         = github_repository.burendo_handbook.default_branch
-  repository_id     = github_repository.burendo_handbook.name
+  repository_id  = github_repository.burendo_handbook.name
   enforce_admins = false
 
   required_status_checks {
