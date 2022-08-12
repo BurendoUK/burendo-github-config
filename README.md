@@ -24,7 +24,7 @@ There are three teams to choose from:
 `Engineering` - This team has elevated privileges to all repositories by default, and consists of the Engineering Practice members.
 `Automation` - This is for service users aka, bots.
 
- By default you should create users with the `member` role. These roles do not have any effect inside repositories and should remain as such.  Repository privileges are controlled in the repositories themselves.
+By default you should create users with the `member` role. These roles do not have any effect inside repositories and should remain as such.  Repository privileges are controlled in the repositories themselves.
 
 ### Naming convention
 Repo names should avoid using any technology within its name, in case the technology changes which would lead to confusion.
