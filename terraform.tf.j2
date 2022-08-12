@@ -14,6 +14,13 @@ terraform {
     aws = {
       version = "~> 4.0"
     }
+    github = {
+      source  = "integrations/github"
+      version = "~> 4.0"
+      token = "{{github.github_token}}"
+      organization = "{{github.github_org}}"
+      owner = "{{github.github_owner}}"
+    }
   }
 }
 
