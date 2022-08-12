@@ -13,11 +13,6 @@ resource "github_repository" "burendo_repo_template" {
   lifecycle {
     prevent_destroy = true
   }
-
-  template {
-    owner      = var.github_org
-    repository = "burendo-repo-template"
-  }
 }
 
 resource "github_team_repository" "burendo_repo_template_burendo" {
