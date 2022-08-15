@@ -12,9 +12,7 @@ from dateutil.tz import tzlocal
 
 
 def main():
-    if "AWS_PROFILE" in os.environ:
-        secrets_manager = boto3.client("secretsmanager")
-    elif "AWS_SECRETS_ROLE" in os.environ:
+    if "AWS_PROFILE" in os.environ or "AWS_SECRETS_ROLE" in os.environ:
         secrets_manager = boto3.client("secretsmanager")
     else: 
         print("ERROR: Missing environment variables. Must contain either AWS_PROFILE (local) or AWS_SECRETS_ROLE (GHA)")
