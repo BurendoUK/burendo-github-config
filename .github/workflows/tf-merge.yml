@@ -60,8 +60,8 @@ jobs:
       - name: "Terraform Apply"
         id: apply
         run: |
-          terraform plan -out terraform.plan >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
-          terraform apply -auto-approve terraform.plan >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+          terraform plan -no-color -out terraform.plan >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+          terraform apply -no-color -auto-approve terraform.plan >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
         continue-on-error: false
         env:
           TF_WORKSPACE: default
@@ -71,7 +71,7 @@ jobs:
 
       - name: "Terraform Plan"
         id: plan
-        run: terraform plan -detailed-exitcode >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+        run: terraform plan -no-color -detailed-exitcode >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
         continue-on-error: false
         env:
           TF_WORKSPACE: default
