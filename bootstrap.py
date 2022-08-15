@@ -59,7 +59,7 @@ def main():
 
 
 def assumed_role_session(role_arn: str, base_session: botocore.session.Session = None):
-    base_session = base_session or boto3.session.Session()._session
+    base_session = base_session or botocore.session.Session()._session
     fetcher = botocore.credentials.AssumeRoleCredentialFetcher(
         client_creator=base_session.create_client,
         source_credentials=base_session.get_credentials(),
