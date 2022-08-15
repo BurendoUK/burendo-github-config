@@ -15,7 +15,7 @@ def main():
     if "AWS_PROFILE" in os.environ:
         secrets_manager = boto3.client("secretsmanager")
     elif "AWS_SECRETS_ROLE" in os.environ:
-        secrets_manager = assumed_role_session(os.environ["AWS_SECRETS_ROLE"])
+        secrets_manager = boto3.client("secretsmanager")
     else:
         secrets_manager = secrets_session.client("secretsmanager")
 
@@ -59,7 +59,7 @@ def main():
 
 
 def assumed_role_session(role_arn: str, base_session: botocore.session.Session = None):
-    base_session = base_session or botocore.session.Session()._session
+    base_session = base_session or boto3.session.Session()._session
     fetcher = botocore.credentials.AssumeRoleCredentialFetcher(
         client_creator=base_session.create_client,
         source_credentials=base_session.get_credentials(),
