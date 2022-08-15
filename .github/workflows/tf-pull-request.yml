@@ -34,6 +34,10 @@ jobs:
           role-duration-seconds: 900
           aws-region: eu-west-2
 
+      - name: Test credentials with bucket list
+        run: |
+          aws s3 ls
+
       - name: "Bootstrap"
         id: bootstrap
         run: |
@@ -42,8 +46,6 @@ jobs:
         working-directory: .
         env:
           TF_WORKSPACE: default
-          AWS_ACCESS_KEY_ID: ${{ secrets.ACTIONS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.ACTIONS_SECRET_ACCESS_KEY }}
           AWS_SECRETS_ROLE: ${{ secrets.AWS_GHA_ROLE }}
           AWS_DEFAULT_REGION: eu-west-2
 
