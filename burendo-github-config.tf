@@ -77,7 +77,7 @@ resource "github_actions_secret" "aws_terraform_version" {
   plaintext_value = var.terraform_version
 }
 
-resource "github_actions_secret" "aws_acc_mgmt_dev" {
+resource "github_actions_secret" "aws_acc_prod" {
   repository      = github_repository.burendo_github_config.name
   secret_name     = "AWS_GHA_ACC_PROD"
   plaintext_value = local.account["burendo-prod"]
