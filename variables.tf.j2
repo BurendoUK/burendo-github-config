@@ -16,3 +16,10 @@ variable "github_team" {}
 variable "dockerhub_username" {}
 variable "dockerhub_password" {}
 variable "terraform_version" {}
+variable "gha_aws" {
+  type = object({
+    access_key_id     = string
+    secret_access_key = string
+  })
+  description = "AWS access key and secret for GitHub Actions deployment"
+}
