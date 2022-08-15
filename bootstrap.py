@@ -16,6 +16,8 @@ def main():
         secrets_manager = boto3.client("secretsmanager")
     elif "AWS_SECRETS_ROLE" in os.environ:
         secrets_manager = boto3.client("secretsmanager")
+    else: 
+        print("ERROR: Missing environment variables. Must contain either AWS_PROFILE (local) or AWS_SECRETS_ROLE (GHA)")
 
     try:
         terraform_secret = secrets_manager.get_secret_value(
