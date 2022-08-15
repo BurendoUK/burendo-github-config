@@ -7,9 +7,6 @@ on:
       - "**/*.tf"
       - ".github/workflows/**"
   workflow_dispatch: {}
-defaults:
-  run:
-    working-directory: terraform/deploy/
 
 jobs:
   production:
