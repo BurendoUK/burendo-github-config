@@ -15,7 +15,7 @@ def main():
     if "AWS_PROFILE" in os.environ:
         secrets_manager = boto3.client("secretsmanager")
     elif "AWS_SECRETS_ROLE" in os.environ:
-        secrets_manager = boto3.client("secretsmanager")
+        secrets_session = assumed_role_session(os.environ["AWS_SECRETS_ROLE"])
     else:
         secrets_manager = secrets_session.client("secretsmanager")
 
