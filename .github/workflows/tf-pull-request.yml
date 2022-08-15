@@ -34,11 +34,6 @@ jobs:
           role-duration-seconds: 900
           aws-region: eu-west-2
 
-      - name: Test credentials with bucket list/whoami
-        run: |
-          aws sts get-caller-identity
-          aws s3 ls
-
       - name: "Bootstrap"
         id: bootstrap
         run: |
@@ -56,8 +51,6 @@ jobs:
         env:
           TF_WORKSPACE: default
           TF_VAR_assume_role: ${var.assume_role}
-          AWS_ACCESS_KEY_ID: ${{ secrets.ACTIONS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.ACTIONS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: eu-west-2
 
       - name: "Terraform Plan"
@@ -67,8 +60,6 @@ jobs:
         env:
           TF_WORKSPACE: default
           TF_VAR_assume_role: ${var.assume_role}
-          AWS_ACCESS_KEY_ID: ${{ secrets.ACTIONS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.ACTIONS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: eu-west-2
 
       - name: "Redact Logs PROD PR"
