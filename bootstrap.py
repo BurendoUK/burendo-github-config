@@ -12,10 +12,10 @@ from dateutil.tz import tzlocal
 
 
 def main():
-    if "AWS_PROFILE" in os.environ or "AWS_SECRETS_ROLE" in os.environ:
-        secrets_manager = boto3.client("secretsmanager")
-    else: 
+    if not ("AWS_PROFILE" in os.environ or "AWS_SECRETS_ROLE" in os.environ):
         print("ERROR: Missing environment variables. Must contain either AWS_PROFILE (local) or AWS_SECRETS_ROLE (GHA)")
+
+    secrets_manager = boto3.client("secretsmanager")
 
     try:
         terraform_secret = secrets_manager.get_secret_value(
