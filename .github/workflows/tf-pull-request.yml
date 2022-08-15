@@ -34,8 +34,9 @@ jobs:
           role-duration-seconds: 900
           aws-region: eu-west-2
 
-      - name: Test credentials with bucket list
+      - name: Test credentials with bucket list/whoami
         run: |
+          aws sts get-caller-identity
           aws s3 ls
 
       - name: "Bootstrap"
