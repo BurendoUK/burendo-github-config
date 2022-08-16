@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - "**/*.tf"
+      - ".github/workflows/**"
   workflow_dispatch: {}
 
 jobs:
