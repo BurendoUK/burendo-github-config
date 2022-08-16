@@ -39,7 +39,6 @@ jobs:
         id: bootstrap
         run: |
           python bootstrap.py > ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
-          sed -i '/^assume_role/ d' terraform.tfvars
         working-directory: .
         env:
           TF_WORKSPACE: default
@@ -51,7 +50,6 @@ jobs:
         run: terraform init >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
         env:
           TF_WORKSPACE: default
-          TF_VAR_assume_role: ${var.assume_role}
           AWS_DEFAULT_REGION: eu-west-2
 
       - name: "Terraform Apply"
@@ -63,7 +61,6 @@ jobs:
         env:
           TF_WORKSPACE: default
           TF_INPUT: false
-          TF_VAR_assume_role: ${var.assume_role}
           AWS_DEFAULT_REGION: eu-west-2
 
       - name: "Terraform Plan"
@@ -73,7 +70,6 @@ jobs:
         env:
           TF_WORKSPACE: default
           TF_INPUT: false
-          TF_VAR_assume_role: ${var.assume_role}
           AWS_DEFAULT_REGION: eu-west-2
 
       - name: "Redact Logs PROD"
