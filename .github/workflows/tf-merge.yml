@@ -73,8 +73,8 @@ jobs:
           AWS_DEFAULT_REGION: eu-west-2
 
       - name: "Redact Logs PROD"
-        if: failure()
-        id: redact-logs-mgmt
+        if: steps.plan.conclusion == 'failure'
+        id: redact-logs-prod
         run: |
               sed -i "s/$ACC_PROD/REDACTED/g" ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
         shell: bash
@@ -82,7 +82,7 @@ jobs:
           ACC_PROD: ${{ secrets.AWS_GHA_ACC_PROD }}
 
       - uses: actions/upload-artifact@v2
-        if: failure()
+        if: steps.redact-logs-prod.conclusion == 'success'
         with:
           name: prod-workflow-log
           path: ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
