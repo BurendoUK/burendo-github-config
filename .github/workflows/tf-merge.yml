@@ -71,6 +71,12 @@ jobs:
           TF_WORKSPACE: default
           TF_INPUT: false
           AWS_DEFAULT_REGION: eu-west-2
+      
+      - name: "Terminate Session"
+        id: terminate-session
+        run: |
+          set -e
+          aws ssm terminate-session --session-id ${{ github.run_id }}-${{ github.run_number }}
 
       - name: "Redact Logs PROD"
         if: steps.plan.conclusion == 'failure'
