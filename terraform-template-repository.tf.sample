@@ -52,12 +52,3 @@ resource "github_issue_label" "example" {
   name       = each.value.name
   repository = github_repository.example.name
 }
-
-resource "null_resource" "example" {
-  triggers = {
-    repo = github_repository.example.name
-  }
-  provisioner "local-exec" {
-    command = "./initial-commit.sh ${github_repository.example.name} '${github_repository.example.description}' ${github_repository.example.template.0.repository}"
-  }
-}
