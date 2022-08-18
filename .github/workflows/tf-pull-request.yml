@@ -34,7 +34,7 @@ jobs:
           aws-secret-access-key: ${{ secrets.ACTIONS_SECRET_ACCESS_KEY }}
           role-to-assume: ${{ secrets.AWS_GHA_ROLE }}
           role-duration-seconds: 900
-          role-session-name: ${{ github.workspace }}-${{ github.run_id }}
+          role-session-name: ${{ github.run_id }}-${{ github.run_number }}
           aws-region: eu-west-2
 
       - name: "Bootstrap"
@@ -67,8 +67,7 @@ jobs:
         id: terminate-session
         run: |
           set -e
-          echo ${{ steps.get-creds.role-session-name }}
-          aws ssm terminate-session --session-id ${{ github.workspace }}-${{ github.run_id }}
+          aws ssm terminate-session --session-id ${{ github.run_id }}-${{ github.run_number }}
 
       - name: "Redact Logs PROD PR"
         if: steps.plan.conclusion == 'failure'
