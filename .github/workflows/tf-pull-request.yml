@@ -67,6 +67,7 @@ jobs:
         id: terminate-session
         run: |
           set -e
+          echo ${{ steps.get-creds.role-session-name }}
           aws ssm terminate-session --session-id ${{ steps.get-creds.role-session-name }}
 
       - name: "Redact Logs PROD PR"
