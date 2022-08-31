@@ -70,7 +70,7 @@ resource "github_actions_secret" "aws_secret_access_key_burendo_secrets_config" 
 resource "github_actions_secret" "aws_role_burendo_secrets_config" {
   repository      = github_repository.burendo_secrets_config.name
   secret_name     = "AWS_GHA_ROLE"
-  plaintext_value = "arn:aws:iam::${local.account["burendo-prod"]}:role/${var.assume_role}"
+  plaintext_value = "arn:aws:iam::${local.account["burendo-prod"]}:role/ci"
 }
 
 resource "github_actions_secret" "aws_terraform_version_burendo_secrets_config" {
