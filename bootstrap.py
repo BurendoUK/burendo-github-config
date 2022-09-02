@@ -35,6 +35,7 @@ def main():
 
     config_data = yaml.load(terraform_secret['SecretBinary'], Loader=yaml.FullLoader)
     config_data['terraform'] = json.loads(terraform_secret['SecretBinary'])["terraform"]
+    config_data['accounts'] = json.loads(terraform_secret['SecretBinary'])["accounts"]
     config_data['github'] = json.loads(github_secret['SecretBinary'])["github"]
 
     with open("terraform.tf.j2") as in_template:
