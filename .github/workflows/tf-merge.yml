@@ -40,6 +40,7 @@ jobs:
         id: bootstrap
         run: |
           python bootstrap.py > ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+          sed -i "s/Administrator/ci/" variables.tf
         working-directory: .
         env:
           TF_WORKSPACE: default
@@ -64,6 +65,15 @@ jobs:
           TF_INPUT: false
           AWS_DEFAULT_REGION: eu-west-2
 
+      - name: "Redact Apply Logs PROD"
+        if: steps.apply.conclusion == 'failure'
+        id: redact-apply-logs-prod
+        run: |
+              sed -i "s/$ACC_PROD/REDACTED/g" ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+        shell: bash
+        env:
+          ACC_PROD: ${{ secrets.AWS_GHA_ACC_PROD }}
+
       - name: "Terraform Plan"
         id: plan
         run: terraform plan -no-color -detailed-exitcode >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
@@ -80,9 +90,9 @@ jobs:
           set -e
           aws ssm terminate-session --session-id ${{ github.run_id }}-${{ github.run_number }}
 
-      - name: "Redact Logs PROD"
+      - name: "Redact Plan Logs PROD"
         if: steps.plan.conclusion == 'failure'
-        id: redact-logs-prod
+        id: redact-plan-logs-prod
         run: |
               sed -i "s/$ACC_PROD/REDACTED/g" ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
         shell: bash
