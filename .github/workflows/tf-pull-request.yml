@@ -57,7 +57,7 @@ jobs:
 
       - name: "Terraform Plan"
         id: plan
-        run: terraform plan -no-color >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+        run: terraform plan -no-color >> plan-${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
         continue-on-error: false
         env:
           TF_WORKSPACE: default
@@ -71,16 +71,16 @@ jobs:
           aws ssm terminate-session --session-id ${{ github.run_id }}-${{ github.run_number }}
 
       - name: "Redact Logs PROD PR"
-        if: ${{ steps.plan.outcome }} == 'failure'
+        if: ${{ always() }}
         id: redact-logs-prod-pr
         run: |
-              sed -i "s/$ACC_PROD/REDACTED/g" ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+              sed -i "s/$ACC_PROD/REDACTED/g" plan-${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
         shell: bash
         env:
           ACC_PROD: ${{ secrets.AWS_GHA_ACC_PROD }}
 
       - uses: actions/upload-artifact@v2
-        if: steps.redact-logs-prod-pr.conclusion == 'success'
+        if: steps.plan.outcome != 'success'
         with:
           name: prod-workflow-log
-          path: ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+          path: plan-${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
