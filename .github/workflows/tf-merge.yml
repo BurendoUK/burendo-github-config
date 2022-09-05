@@ -59,14 +59,13 @@ jobs:
         run: |
           terraform plan -no-color -out terraform.plan >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
           terraform apply -no-color -auto-approve terraform.plan >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
-        continue-on-error: false
         env:
           TF_WORKSPACE: default
           TF_INPUT: false
           AWS_DEFAULT_REGION: eu-west-2
 
       - name: "Redact Apply Logs PROD"
-        if: ${{ steps.apply.outcome }} == 'failure'
+        if: ${{ always() }}
         id: redact-apply-logs-prod
         run: |
               sed -i "s/$ACC_PROD/REDACTED/g" ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
@@ -74,10 +73,18 @@ jobs:
         env:
           ACC_PROD: ${{ secrets.AWS_GHA_ACC_PROD }}
 
+      - name: "Upload Apply log"
+        uses: actions/upload-artifact@v2
+        id: upload-apply-log
+        if: steps.apply.outcome != 'success'
+        with:
+          name: prod-apply-workflow-log
+          path: ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+
       - name: "Terraform Plan"
         id: plan
+        if: steps.apply.outcome == 'success'
         run: terraform plan -no-color -detailed-exitcode >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
-        continue-on-error: false
         env:
           TF_WORKSPACE: default
           TF_INPUT: false
@@ -91,7 +98,7 @@ jobs:
           aws ssm terminate-session --session-id ${{ github.run_id }}-${{ github.run_number }}
 
       - name: "Redact Plan Logs PROD"
-        if: ${{ steps.plan.outcome }} == 'failure'
+        if: ${{ always() }}
         id: redact-plan-logs-prod
         run: |
               sed -i "s/$ACC_PROD/REDACTED/g" ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
@@ -99,8 +106,10 @@ jobs:
         env:
           ACC_PROD: ${{ secrets.AWS_GHA_ACC_PROD }}
 
-      - uses: actions/upload-artifact@v2
-        if: steps.redact-logs-prod.conclusion == 'success'
+      - name: "Upload Plan log"
+        uses: actions/upload-artifact@v2
+        id: upload-plan-log
+        if: steps.plan.outcome != 'success'
         with:
-          name: prod-workflow-log
+          name: prod-plan-workflow-log
           path: ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
