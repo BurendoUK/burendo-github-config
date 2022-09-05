@@ -58,7 +58,6 @@ jobs:
       - name: "Terraform Plan"
         id: plan
         run: terraform plan -no-color >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
-        continue-on-error: false
         env:
           TF_WORKSPACE: default
           AWS_DEFAULT_REGION: eu-west-2
@@ -79,7 +78,9 @@ jobs:
         env:
           ACC_PROD: ${{ secrets.AWS_GHA_ACC_PROD }}
 
-      - uses: actions/upload-artifact@v2
+      - name: "Upload Plan log"
+        uses: actions/upload-artifact@v2
+        id: upload-plan-log
         if: steps.plan.outcome != 'success'
         with:
           name: prod-workflow-log
