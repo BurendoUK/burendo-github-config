@@ -71,7 +71,7 @@ jobs:
           aws ssm terminate-session --session-id ${{ github.run_id }}-${{ github.run_number }}
 
       - name: "Redact Logs PROD PR"
-        if: steps.plan.conclusion == 'failure'
+        if: ${{ steps.plan.outcome }} == 'failure'
         id: redact-logs-prod-pr
         run: |
               sed -i "s/$ACC_PROD/REDACTED/g" ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
