@@ -31,20 +31,22 @@ resource "github_team_repository" "burendo_identity_admin" {
   permission = "admin"
 }
 
-resource "github_branch_protection" "burendo_identity_main" {
-  pattern        = github_repository.burendo_identity.default_branch
-  repository_id  = github_repository.burendo_identity.name
-  enforce_admins = false
+# Commented out until we establish the Pro license
 
-  required_status_checks {
-    strict = true
-  }
+# resource "github_branch_protection" "burendo_identity_main" {
+#   pattern        = github_repository.burendo_identity.default_branch
+#   repository_id  = github_repository.burendo_identity.name
+#   enforce_admins = false
 
-  required_pull_request_reviews {
-    dismiss_stale_reviews      = true
-    require_code_owner_reviews = true
-  }
-}
+#   required_status_checks {
+#     strict = true
+#   }
+
+#   required_pull_request_reviews {
+#     dismiss_stale_reviews      = true
+#     require_code_owner_reviews = true
+#   }
+# }
 
 resource "github_issue_label" "burendo_identity" {
   for_each   = { for common_label in local.common_labels : common_label.name => common_label }
