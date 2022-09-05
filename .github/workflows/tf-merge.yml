@@ -76,7 +76,7 @@ jobs:
       - name: "Upload Apply log"
         uses: actions/upload-artifact@v2
         id: upload-apply-log
-        if: steps.apply.outcome == 'failure'
+        if: steps.apply.output != 0
         with:
           name: prod-apply-workflow-log
           path: ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
