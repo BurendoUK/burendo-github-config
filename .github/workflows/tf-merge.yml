@@ -57,8 +57,8 @@ jobs:
       - name: "Terraform Apply"
         id: apply
         run: |
-          terraform plan -no-color -out terraform.plan >> apply-${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
-          terraform apply -no-color -auto-approve terraform.plan >> apply-${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+          terraform plan -no-color -out terraform.plan >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+          terraform apply -no-color -auto-approve terraform.plan >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
         continue-on-error: false
         env:
           TF_WORKSPACE: default
@@ -69,7 +69,7 @@ jobs:
         if: ${{ always() }}
         id: redact-apply-logs-prod
         run: |
-              sed -i "s/$ACC_PROD/REDACTED/g" apply-${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+              sed -i "s/$ACC_PROD/REDACTED/g" ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
         shell: bash
         env:
           ACC_PROD: ${{ secrets.AWS_GHA_ACC_PROD }}
@@ -78,11 +78,11 @@ jobs:
         if: steps.apply.outcome != 'success'
         with:
           name: prod-apply-workflow-log
-          path: apply-${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+          path: ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
 
       - name: "Terraform Plan"
         id: plan
-        run: terraform plan -no-color -detailed-exitcode >> plan-${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+        run: terraform plan -no-color -detailed-exitcode >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
         continue-on-error: false
         env:
           TF_WORKSPACE: default
@@ -100,7 +100,7 @@ jobs:
         if: ${{ always() }}
         id: redact-plan-logs-prod
         run: |
-              sed -i "s/$ACC_PROD/REDACTED/g" plan-${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+              sed -i "s/$ACC_PROD/REDACTED/g" ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
         shell: bash
         env:
           ACC_PROD: ${{ secrets.AWS_GHA_ACC_PROD }}
@@ -109,4 +109,4 @@ jobs:
         if: steps.plan.outcome != 'success'
         with:
           name: prod-plan-workflow-log
-          path: plan-${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+          path: ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
