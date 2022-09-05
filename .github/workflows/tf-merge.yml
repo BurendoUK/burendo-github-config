@@ -64,23 +64,6 @@ jobs:
           TF_INPUT: false
           AWS_DEFAULT_REGION: eu-west-2
 
-      - name: "Redact Apply Logs PROD"
-        if: ${{ always() }}
-        id: redact-apply-logs-prod
-        run: |
-              sed -i "s/$ACC_PROD/REDACTED/g" ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
-        shell: bash
-        env:
-          ACC_PROD: ${{ secrets.AWS_GHA_ACC_PROD }}
-
-      - name: "Upload Apply log"
-        uses: actions/upload-artifact@v2
-        id: upload-apply-log
-        if: steps.apply.outcome == 'failure'
-        with:
-          name: prod-apply-workflow-log
-          path: ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
-
       - name: "Terraform Plan"
         id: plan
         if: steps.apply.outcome == 'success'
@@ -97,19 +80,19 @@ jobs:
           set -e
           aws ssm terminate-session --session-id ${{ github.run_id }}-${{ github.run_number }}
 
-      - name: "Redact Plan Logs PROD"
+      - name: "Redact Apply Logs PROD"
         if: ${{ always() }}
-        id: redact-plan-logs-prod
+        id: redact-apply-logs-prod
         run: |
               sed -i "s/$ACC_PROD/REDACTED/g" ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
         shell: bash
         env:
           ACC_PROD: ${{ secrets.AWS_GHA_ACC_PROD }}
 
-      - name: "Upload Plan log"
+      - name: "Upload log"
         uses: actions/upload-artifact@v2
-        id: upload-plan-log
-        if: steps.plan.outcome == 'failure'
+        id: upload-log
+        if: ${{ failure() }}
         with:
-          name: prod-plan-workflow-log
+          name: prod-workflow-log
           path: ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
