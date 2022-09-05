@@ -81,7 +81,7 @@ jobs:
       - name: "Upload Plan log"
         uses: actions/upload-artifact@v2
         id: upload-plan-log
-        if: steps.plan.outcome != 'success'
+        if: steps.plan.outcome == 'failure'
         with:
           name: prod-workflow-log
           path: ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
