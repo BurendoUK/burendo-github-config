@@ -55,6 +55,12 @@ resource "github_issue_label" "burendo_secrets_config" {
   repository = github_repository.burendo_secrets_config.name
 }
 
+resource "github_actions_secret" "aws_terraform_version_burendo_secrets_config" {
+  repository      = github_repository.burendo_secrets_config.name
+  secret_name     = "TERRAFORM_VERSION"
+  plaintext_value = var.terraform_version
+}
+
 resource "github_actions_secret" "aws_access_key_id_burendo_secrets_config" {
   repository      = github_repository.burendo_secrets_config.name
   secret_name     = "ACTIONS_ACCESS_KEY_ID"
@@ -73,14 +79,20 @@ resource "github_actions_secret" "aws_role_burendo_secrets_config" {
   plaintext_value = "arn:aws:iam::${local.account["burendo-prod"]}:role/ci"
 }
 
-resource "github_actions_secret" "aws_terraform_version_burendo_secrets_config" {
-  repository      = github_repository.burendo_secrets_config.name
-  secret_name     = "TERRAFORM_VERSION"
-  plaintext_value = var.terraform_version
-}
-
 resource "github_actions_secret" "aws_acc_prod_burendo_secrets_config" {
   repository      = github_repository.burendo_secrets_config.name
   secret_name     = "AWS_GHA_ACC_PROD"
   plaintext_value = local.account["burendo-prod"]
+}
+
+resource "github_actions_secret" "aws_mgmt_role_burendo_aws_org" {
+  repository      = github_repository.burendo_aws_org.name
+  secret_name     = "AWS_GHA_ROLE_MGMT"
+  plaintext_value = "arn:aws:iam::${local.account["burendo-mgmt"]}:role/ci"
+}
+
+resource "github_actions_secret" "aws_acc_mgmt_burendo_aws_org" {
+  repository      = github_repository.burendo_aws_org.name
+  secret_name     = "AWS_GHA_ACC_MGMT"
+  plaintext_value = local.account["burendo-mgmt"]
 }
