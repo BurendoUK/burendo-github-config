@@ -31,8 +31,6 @@ resource "github_team_repository" "burendo_aws_org_admin" {
   permission = "admin"
 }
 
-Commented out until we establish the Pro license
-
 resource "github_branch_protection" "burendo_aws_org_main" {
   pattern        = github_repository.burendo_aws_org.default_branch
   repository_id  = github_repository.burendo_aws_org.name
