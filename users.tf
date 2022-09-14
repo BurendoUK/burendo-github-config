@@ -70,7 +70,7 @@ resource "github_team_membership" "engineering_membership_burpaulbutler" {
   role     = "maintainer"
 }
 
-resource "github_team_membership" "engineering_membership_JordieRochBurendo" {
+resource "github_team_membership" "engineering_membership_jordierochburendo" {
   team_id  = github_team.burendo.id
   username = "JordieRochBurendo"
   role     = "member"
