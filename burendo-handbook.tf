@@ -1,6 +1,6 @@
 resource "github_repository" "burendo_handbook" {
-  name        = "burendo-handbook"
-  description = "The Burendo Handbook"
+  name        = "burendo-handbook-private"
+  description = "The Burendo Handbook private content"
   visibility  = "private"
   auto_init   = false
 
@@ -37,7 +37,7 @@ resource "github_branch_protection" "burendo_handbook_main" {
   enforce_admins = false
 
   required_status_checks {
-    strict   = true
+    strict = true
   }
 
   required_pull_request_reviews {
