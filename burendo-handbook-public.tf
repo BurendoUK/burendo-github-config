@@ -1,7 +1,7 @@
 resource "github_repository" "burendo_handbook_public" {
   name        = "burendo-handbook-public"
   description = "The Burendo Handbook public content"
-  visibility  = "private"
+  visibility  = "public"
   auto_init   = false
 
   allow_merge_commit     = false
