@@ -71,6 +71,12 @@ resource "github_actions_secret" "aws_role_burendo_handbook_infrastructure" {
   plaintext_value = "arn:aws:iam::${local.account["burendo-prod"]}:role/ci"
 }
 
+resource "github_actions_secret" "dev_aws_role_burendo_handbook_infrastructure" {
+  repository      = github_repository.burendo_handbook_infrastructure.name
+  secret_name     = "DEV_AWS_GHA_ROLE"
+  plaintext_value = "arn:aws:iam::${local.account["burendo-dev"]}:role/ci"
+}
+
 resource "github_actions_secret" "aws_terraform_version_burendo_handbook_infrastructure" {
   repository      = github_repository.burendo_handbook_infrastructure.name
   secret_name     = "TERRAFORM_VERSION"
@@ -81,4 +87,10 @@ resource "github_actions_secret" "aws_acc_prod_burendo_handbook_infrastructure" 
   repository      = github_repository.burendo_handbook_infrastructure.name
   secret_name     = "AWS_GHA_ACC_PROD"
   plaintext_value = local.account["burendo-prod"]
+}
+
+resource "github_actions_secret" "dev_aws_acc_prod_burendo_handbook_infrastructure" {
+  repository      = github_repository.burendo_handbook_infrastructure.name
+  secret_name     = "AWS_GHA_ACC_PROD"
+  plaintext_value = local.account["burendo-dev"]
 }
