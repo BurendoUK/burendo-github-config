@@ -1,5 +1,5 @@
-resource "github_repository" "burendo_dot_com" {
-  name        = "burendo-dot-com"
+resource "github_repository" "burendo_website" {
+  name        = "burendo-website"
   description = "The Burendo dot com website"
   visibility  = "public"
   auto_init   = false
@@ -19,21 +19,21 @@ resource "github_repository" "burendo_dot_com" {
   }
 }
 
-resource "github_team_repository" "burendo_dot_com_burendo" {
-  repository = github_repository.burendo_dot_com.name
+resource "github_team_repository" "burendo_website_burendo" {
+  repository = github_repository.burendo_website.name
   team_id    = github_team.burendo.id
   permission = "push"
 }
 
-resource "github_team_repository" "burendo_dot_com_admin" {
-  repository = github_repository.burendo_dot_com.name
+resource "github_team_repository" "burendo_website_admin" {
+  repository = github_repository.burendo_website.name
   team_id    = github_team.engineering.id
   permission = "admin"
 }
 
-resource "github_branch_protection" "burendo_dot_com_main" {
-  pattern        = github_repository.burendo_dot_com.default_branch
-  repository_id  = github_repository.burendo_dot_com.name
+resource "github_branch_protection" "burendo_website_main" {
+  pattern        = github_repository.burendo_website.default_branch
+  repository_id  = github_repository.burendo_website.name
   enforce_admins = false
 
   required_status_checks {
@@ -46,9 +46,9 @@ resource "github_branch_protection" "burendo_dot_com_main" {
   }
 }
 
-resource "github_issue_label" "burendo_dot_com" {
+resource "github_issue_label" "burendo_website" {
   for_each   = { for common_label in local.common_labels : common_label.name => common_label }
   color      = each.value.colour
   name       = each.value.name
-  repository = github_repository.burendo_dot_com.name
+  repository = github_repository.burendo_website.name
 }
