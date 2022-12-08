@@ -52,9 +52,3 @@ resource "github_issue_label" "example" {
   name       = each.value.name
   repository = github_repository.example.name
 }
-
-resource "github_actions_secret" "example_terraform_version" {
-  repository      = github_repository.example.name
-  secret_name     = "TERRAFORM_VERSION"
-  plaintext_value = var.terraform_version
-}
