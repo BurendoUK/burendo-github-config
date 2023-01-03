@@ -55,6 +55,6 @@ resource "github_issue_label" "burendo_handbook_public" {
 
 resource "github_actions_secret" "burendo_handbook_public_github_token" {
   repository      = github_repository.burendo_handbook_public.name
-  secret_name     = "GHA_WEBHOOK_TOKEN"
+  secret_name     = "GHA_TOKEN"
   plaintext_value = var.github_token
 }

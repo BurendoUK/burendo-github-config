@@ -61,6 +61,6 @@ resource "github_actions_secret" "burendo_aws_labs_terraform_version" {
 
 resource "github_actions_secret" "burendo_aws_labs_github_token" {
   repository      = github_repository.burendo_handbook_public.name
-  secret_name     = "GHA_WEBHOOK_TOKEN"
+  secret_name     = "GHA_TOKEN"
   plaintext_value = var.github_token
 }
