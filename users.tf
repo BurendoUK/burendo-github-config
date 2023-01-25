@@ -76,6 +76,12 @@ resource "github_team_membership" "engineering_membership_garygreenburendo" {
   role     = "maintainer"
 }
 
+resource "github_team_membership" "engineering_membership_luketowell" {
+  team_id  = github_team.engineering.id
+  username = "luketowell"
+  role     = "maintainer"
+}
+
 resource "github_team_membership" "engineering_membership_jordierochburendo" {
   team_id  = github_team.burendo.id
   username = "JordieRochBurendo"
