@@ -47,3 +47,15 @@ resource "github_issue_label" "stackedit" {
   name       = each.value.name
   repository = github_repository.stackedit.name
 }
+
+resource "github_actions_secret" "aws_dev_role_stackedit" {
+  repository      = github_repository.stackedit.name
+  secret_name     = "DOCKERHUB_USERNAME"
+  plaintext_value = var.dockerhub_username
+}
+
+resource "github_actions_secret" "aws_acc_dev_stackedit" {
+  repository      = github_repository.stackedit.name
+  secret_name     = "DOCKERHUB_PASSWORD"
+  plaintext_value = var.dockerhub_password
+}
