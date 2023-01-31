@@ -14,6 +14,11 @@ resource "github_repository" "stackedit" {
   }
 }
 
+resource "github_branch_default" "stackedit_branch" {
+  repository = github_repository.stackedit.name
+  branch     = "main"
+}
+
 resource "github_team_repository" "stackedit_burendo" {
   repository = github_repository.stackedit.name
   team_id    = github_team.burendo.id
@@ -48,14 +53,26 @@ resource "github_issue_label" "stackedit" {
   repository = github_repository.stackedit.name
 }
 
-resource "github_actions_secret" "aws_dev_role_stackedit" {
+resource "github_actions_secret" "docker_username_stackedit" {
   repository      = github_repository.stackedit.name
   secret_name     = "DOCKERHUB_USERNAME"
   plaintext_value = var.dockerhub_username
 }
 
-resource "github_actions_secret" "aws_acc_dev_stackedit" {
+resource "github_actions_secret" "docker_password_stackedit" {
   repository      = github_repository.stackedit.name
   secret_name     = "DOCKERHUB_PASSWORD"
   plaintext_value = var.dockerhub_password
+}
+
+resource "github_actions_secret" "docker_token_stackedit" {
+  repository      = github_repository.stackedit.name
+  secret_name     = "DOCKERHUB_TOKEN"
+  plaintext_value = var.dockerhub_token
+}
+
+resource "github_actions_secret" "stackedit_github_token" {
+  repository      = github_repository.stackedit.name
+  secret_name     = "GHA_TOKEN"
+  plaintext_value = var.github_token
 }
