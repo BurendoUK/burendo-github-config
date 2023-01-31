@@ -14,6 +14,11 @@ resource "github_repository" "stackedit" {
   }
 }
 
+resource "github_branch_default" "stackedit_branch" {
+  repository = github_repository.stackedit.name
+  branch     = "main"
+}
+
 resource "github_team_repository" "stackedit_burendo" {
   repository = github_repository.stackedit.name
   team_id    = github_team.burendo.id
