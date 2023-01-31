@@ -60,6 +60,12 @@ resource "github_actions_secret" "docker_password_stackedit" {
   plaintext_value = var.dockerhub_password
 }
 
+resource "github_actions_secret" "docker_token_stackedit" {
+  repository      = github_repository.stackedit.name
+  secret_name     = "DOCKERHUB_TOKEN"
+  plaintext_value = var.dockerhub_token
+}
+
 resource "github_actions_secret" "stackedit_github_token" {
   repository      = github_repository.stackedit.name
   secret_name     = "GHA_TOKEN"
