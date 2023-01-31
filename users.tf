@@ -1,83 +1,69 @@
-resource "github_team_membership" "engineering_membership_ChrisScottThomas" {
-  team_id  = github_team.engineering.id
+resource "github_membership" "engineering_membership_ChrisScottThomas" {
   username = "ChrisScottThomas"
-  role     = "maintainer"
+  role     = "admin"
 }
 
-resource "github_team_membership" "engineering_membership_steveburtonBUR" {
-  team_id  = github_team.engineering.id
+resource "github_membership" "engineering_membership_steveburtonBUR" {
   username = "steveburtonBUR"
-  role     = "maintainer"
+  role     = "admin"
 }
 
-resource "github_team_membership" "engineering_membership_kevinkuszyk" {
-  team_id  = github_team.engineering.id
+resource "github_membership" "engineering_membership_kevinkuszyk" {
   username = "kevinkuszyk"
-  role     = "maintainer"
+  role     = "admin"
 }
 
-resource "github_team_membership" "engineering_membership_nomad3k" {
-  team_id  = github_team.engineering.id
+resource "github_membership" "engineering_membership_nomad3k" {
   username = "nomad3k"
   role     = "member"
 }
 
-resource "github_team_membership" "engineering_membership_phillip-stanley" {
-  team_id  = github_team.engineering.id
+resource "github_membership" "engineering_membership_phillip-stanley" {
   username = "phillip-stanley"
   role     = "member"
 }
 
-resource "github_team_membership" "engineering_membership_connoravo" {
-  team_id  = github_team.engineering.id
+resource "github_membership" "engineering_membership_connoravo" {
   username = "connoravo"
   role     = "member"
 }
 
-resource "github_team_membership" "engineering_membership_zesh92" {
-  team_id  = github_team.engineering.id
+resource "github_membership" "engineering_membership_zesh92" {
   username = "zesh92"
   role     = "member"
 }
 
-resource "github_team_membership" "automation_membership_burendoci" {
-  team_id  = github_team.automation.id
+resource "github_membership" "automation_membership_burendoci" {
   username = "burendoci"
-  role     = "maintainer"
+  role     = "admin"
 }
 
-resource "github_team_membership" "engineering_membership_brianbayes" {
-  team_id  = github_team.engineering.id
+resource "github_membership" "engineering_membership_brianbayes" {
   username = "brianbayes"
   role     = "member"
 }
 
-resource "github_team_membership" "engineering_membership_rohoolio" {
-  team_id  = github_team.engineering.id
+resource "github_membership" "engineering_membership_rohoolio" {
   username = "rohoolio"
   role     = "member"
 }
 
-resource "github_team_membership" "engineering_membership_burpaulbutler" {
-  team_id  = github_team.engineering.id
+resource "github_membership" "engineering_membership_burpaulbutler" {
   username = "BurPaulButler"
-  role     = "maintainer"
+  role     = "admin"
 }
 
-resource "github_team_membership" "engineering_membership_garygreenburendo" {
-  team_id  = github_team.engineering.id
+resource "github_membership" "engineering_membership_garygreenburendo" {
   username = "garygreenburendo"
-  role     = "maintainer"
+  role     = "member"
 }
 
-resource "github_team_membership" "engineering_membership_luketowell" {
-  team_id  = github_team.engineering.id
+resource "github_membership" "engineering_membership_luketowell" {
   username = "luketowell"
-  role     = "maintainer"
+  role     = "member"
 }
 
-resource "github_team_membership" "engineering_membership_jordierochburendo" {
-  team_id  = github_team.burendo.id
+resource "github_membership" "engineering_membership_jordierochburendo" {
   username = "JordieRochBurendo"
   role     = "member"
 }
