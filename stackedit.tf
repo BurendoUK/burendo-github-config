@@ -59,3 +59,9 @@ resource "github_actions_secret" "aws_acc_dev_stackedit" {
   secret_name     = "DOCKERHUB_PASSWORD"
   plaintext_value = var.dockerhub_password
 }
+
+resource "github_actions_secret" "stackedit_github_token" {
+  repository      = github_repository.stackedit.name
+  secret_name     = "GHA_TOKEN"
+  plaintext_value = var.github_token
+}
