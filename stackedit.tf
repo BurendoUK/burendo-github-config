@@ -88,3 +88,9 @@ resource "github_actions_secret" "aws_secret_access_key_stackedit" {
   secret_name     = "ACTIONS_SECRET_ACCESS_KEY"
   plaintext_value = var.gha_aws.secret_access_key
 }
+
+resource "github_actions_secret" "aws_role_stackedit" {
+  repository      = github_repository.stackedit.name
+  secret_name     = "AWS_GHA_ROLE"
+  plaintext_value = "arn:aws:iam::${local.account["burendo-prod"]}:role/ci"
+}
