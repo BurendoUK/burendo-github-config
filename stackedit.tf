@@ -76,3 +76,15 @@ resource "github_actions_secret" "stackedit_github_token" {
   secret_name     = "GHA_TOKEN"
   plaintext_value = var.github_token
 }
+
+resource "github_actions_secret" "aws_access_key_id_stackedit" {
+  repository      = github_repository.stackedit.name
+  secret_name     = "ACTIONS_ACCESS_KEY_ID"
+  plaintext_value = var.gha_aws.access_key_id
+}
+
+resource "github_actions_secret" "aws_secret_access_key_stackedit" {
+  repository      = github_repository.stackedit.name
+  secret_name     = "ACTIONS_SECRET_ACCESS_KEY"
+  plaintext_value = var.gha_aws.secret_access_key
+}
