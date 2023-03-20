@@ -1,6 +1,6 @@
-resource "github_repository" "bruendo_devcontainer" {
-  name        = "bruendo-devcontainer"
-  description = "Repo for the Bruendo VSCode Devcontainer.  This devcontainer is used for all burendo projects."
+resource "github_repository" "burendo_devcontainer" {
+  name        = "burendo-devcontainer"
+  description = "Repo for the Burendo VSCode Devcontainer.  This devcontainer is used for all Burendo projects."
   visibility  = "public"
   auto_init   = false
 
@@ -19,21 +19,21 @@ resource "github_repository" "bruendo_devcontainer" {
   }
 }
 
-resource "github_team_repository" "bruendo_devcontainer_burendo" {
-  repository = github_repository.bruendo_devcontainer.name
+resource "github_team_repository" "burendo_devcontainer_burendo" {
+  repository = github_repository.burendo_devcontainer.name
   team_id    = github_team.burendo.id
   permission = "push"
 }
 
-resource "github_team_repository" "bruendo_devcontainer_admin" {
-  repository = github_repository.bruendo_devcontainer.name
+resource "github_team_repository" "burendo_devcontainer_admin" {
+  repository = github_repository.burendo_devcontainer.name
   team_id    = github_team.engineering.id
   permission = "admin"
 }
 
-resource "github_branch_protection" "bruendo_devcontainer_main" {
-  pattern        = github_repository.bruendo_devcontainer.default_branch
-  repository_id  = github_repository.bruendo_devcontainer.name
+resource "github_branch_protection" "burendo_devcontainer_main" {
+  pattern        = github_repository.burendo_devcontainer.default_branch
+  repository_id  = github_repository.burendo_devcontainer.name
   enforce_admins = false
 
   required_status_checks {
@@ -46,9 +46,9 @@ resource "github_branch_protection" "bruendo_devcontainer_main" {
   }
 }
 
-resource "github_issue_label" "bruendo_devcontainer" {
+resource "github_issue_label" "burendo_devcontainer" {
   for_each   = { for common_label in local.common_labels : common_label.name => common_label }
   color      = each.value.colour
   name       = each.value.name
-  repository = github_repository.bruendo_devcontainer.name
+  repository = github_repository.burendo_devcontainer.name
 }
