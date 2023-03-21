@@ -38,7 +38,6 @@ resource "github_branch_protection" "burendo_handbook_main" {
 
   required_status_checks {
     strict = true
-    contexts = ["pull-request"]
   }
 
   required_pull_request_reviews {
