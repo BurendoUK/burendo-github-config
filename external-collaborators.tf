@@ -20,12 +20,6 @@ resource "github_repository_collaborator" "external_collaborator_burendo_handboo
   COLLABORATORS FOR OTHER REPOS
 */
 
-resource "github_repository_collaborator" "external_collaborator_burendo_website_lubomski" {
-  repository = "burendo-website"
-  username   = "lubomski"
-  permission = "push"
-}
-
 resource "github_repository_collaborator" "external_collaborator_generator_aws_api_xlasercut" {
   repository = "generator-aws-api"
   username   = "xLasercut"
