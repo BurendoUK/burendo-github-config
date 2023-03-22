@@ -53,17 +53,7 @@ resource "github_membership" "engineering_membership_burpaulbutler" {
   role     = "admin"
 }
 
-resource "github_membership" "engineering_membership_garygreenburendo" {
-  username = "garygreenburendo"
-  role     = "member"
-}
-
 resource "github_membership" "engineering_membership_luketowell" {
   username = "luketowell"
-  role     = "member"
-}
-
-resource "github_membership" "engineering_membership_jordierochburendo" {
-  username = "JordieRochBurendo"
   role     = "member"
 }
