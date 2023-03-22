@@ -1,8 +1,8 @@
 resource "github_repository" "burendo_academy" {
-  name             = "burendo-academy"
-  description      = "burendo_academy"
-  visibility       = "private"
-  auto_init        = false
+  name        = "burendo-academy"
+  description = "burendo_academy"
+  visibility  = "private"
+  auto_init   = false
 
   allow_merge_commit     = false
   delete_branch_on_merge = true
@@ -14,7 +14,7 @@ resource "github_repository" "burendo_academy" {
   }
 
   template {
-    owner = var.github_org
+    owner      = var.github_org
     repository = "burendo-repo-template-terraform"
   }
 }
@@ -33,7 +33,7 @@ resource "github_team_repository" "burendo_academy_admin" {
 
 resource "github_branch_protection" "burendo_academy_main" {
   pattern        = github_repository.burendo_academy.default_branch
-  repository_id     = github_repository.burendo_academy.name
+  repository_id  = github_repository.burendo_academy.name
   enforce_admins = false
 
   required_status_checks {
