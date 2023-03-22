@@ -36,3 +36,28 @@ If you need to rename the terraform state file for any reason:
 1) Rename the state file in S3 while no pipelines are rolling out.
 2) Update the repo terraform.tf.j2 backend s3 resource key value to the new state file name.
 3) PR / Terraform apply out to the environment - there should be no infrastructure changes.
+
+## Handbook access
+
+There are two types of Handbook access that will be requested from Burendoers - public content and private content. They will do this via the `#cop-engineering` slack channel. You will only need their username for either.
+
+**Access should only be given to current Burendoers**. If people outside Burendo spot mistakes or otherwise and would like to contribute fixes to public content, the guide for them is to fork the public repository and submit a PR, so they don't need access in code.
+
+### Public access
+
+To grant access to the public repo, you need to do the following:
+
+1. Add their GitHub username to the `local.handbook_public_collaborators_github_usernames` array in (external-collaborators.tf)[external-collaborators.tf].
+1. Create a PR and get this approved and merged.
+
+Once done, public access **does not need to be removed** after the contributor has done and can stay while they are in Burendo.
+
+### Private access
+
+To grant access to the private repo, you need to do the following:
+
+1. Add their GitHub username to the `local.handbook_private_collaborators_github_usernames` array in (external-collaborators.tf)[external-collaborators.tf].
+1. Create a PR and get this approved and merged.
+1. **Reverse the process when they have had their contribution PR merged**
+
+The reason private access should be removed afterwards is because it costs to give access to a private repo. **It is the responsibility of the person giving access to communicate with the person gaining access and then remove the access when they have finished**.
