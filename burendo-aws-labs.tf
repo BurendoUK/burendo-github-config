@@ -64,3 +64,21 @@ resource "github_actions_secret" "burendo_aws_labs_github_token" {
   secret_name     = "GHA_TOKEN"
   plaintext_value = var.github_token
 }
+
+resource "github_actions_secret" "burendo_aws_labs_docker_username" {
+  repository      = github_repository.burendo_aws_labs.name
+  secret_name     = "DOCKERHUB_USERNAME"
+  plaintext_value = var.dockerhub_username
+}
+
+resource "github_actions_secret" "burendo_aws_labs_docker_password" {
+  repository      = github_repository.burendo_aws_labs.name
+  secret_name     = "DOCKERHUB_PASSWORD"
+  plaintext_value = var.dockerhub_password
+}
+
+resource "github_actions_secret" "burendo_aws_labs_docker_token" {
+  repository      = github_repository.burendo_aws_labs.name
+  secret_name     = "DOCKERHUB_TOKEN"
+  plaintext_value = var.dockerhub_token
+}
