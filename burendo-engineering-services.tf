@@ -1,6 +1,6 @@
 resource "github_repository" "burendo_engineering_services" {
   name        = "burendo-engineering-services"
-  description = "A place to capture Burendos Engineering services"
+  description = "A place to capture Burendo's Engineering services"
   visibility  = "private"
   auto_init   = false
 
