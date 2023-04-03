@@ -1,26 +1,26 @@
 resource "github_repository" "burendo_website_infrastructure" {
-  name        = "burendo-website-infrastructure"
-  description = "The infrastructure that underpins the burendo dot com website."
-  visibility  = "public"
-  auto_init   = false
+  name             = "burendo-website-infrastructure"
+  description      = "The burendo dot com website infrastructure. The content exists in burendouk/burendo-website"
+  visibility       = "public"
+  auto_init        = false
 
   allow_merge_commit     = false
   delete_branch_on_merge = true
   has_issues             = true
-  topics                 = local.common_topics
+  topics                 = concat(local.common_topics, local.aws_topics)
 
   lifecycle {
     prevent_destroy = true
   }
 
   template {
-    owner      = var.github_org
-    repository = "burendo-repo-template"
+    owner = var.github_org
+    repository = "burendo-repo-template-terraform"
   }
 }
 
-resource "github_team_repository" "example_burendo" {
-  repository = github_repository.example.name
+resource "github_team_repository" "burendo_website_infrastructure_burendo" {
+  repository = github_repository.burendo_website_infrastructure.name
   team_id    = github_team.burendo.id
   permission = "push"
 }
@@ -33,7 +33,7 @@ resource "github_team_repository" "burendo_website_infrastructure_admin" {
 
 resource "github_branch_protection" "burendo_website_infrastructure_main" {
   pattern        = github_repository.burendo_website_infrastructure.default_branch
-  repository_id  = github_repository.burendo_website_infrastructure.name
+  repository_id     = github_repository.burendo_website_infrastructure.name
   enforce_admins = false
 
   required_status_checks {
