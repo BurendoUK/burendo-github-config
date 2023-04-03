@@ -1,6 +1,6 @@
 resource "github_repository" "burendo_website_infrastructure" {
   name        = "burendo-website-infrastructure"
-  description = "burendo-website-infrastructure"
+  description = "The infrastructure that underpins the burendo dot com website."
   visibility  = "public"
   auto_init   = false
 
