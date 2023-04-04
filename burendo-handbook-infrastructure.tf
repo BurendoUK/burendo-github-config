@@ -100,3 +100,9 @@ resource "github_actions_secret" "github_token_burendo_handbook_infrastructure" 
   secret_name     = "GH_TOKEN"
   plaintext_value = var.github_token
 }
+
+resource "github_actions_secret" "github_username_burendo_handbook_infrastructure" {
+  repository      = github_repository.burendo_handbook_infrastructure.name
+  secret_name     = "GH_USER"
+  plaintext_value = var.github_username
+}
