@@ -94,3 +94,9 @@ resource "github_actions_secret" "aws_acc_dev_burendo_handbook_infrastructure" {
   secret_name     = "AWS_GHA_ACC_DEV"
   plaintext_value = local.account["burendo-dev"]
 }
+
+resource "github_actions_secret" "github_token_burendo_handbook_infrastructure" {
+  repository      = github_repository.burendo_handbook_infrastructure.name
+  secret_name     = "GITHUB_TOKEN"
+  plaintext_value = var.github_token
+}
