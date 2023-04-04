@@ -58,3 +58,9 @@ resource "github_actions_secret" "burendo_handbook_terraform_version" {
   secret_name     = "TERRAFORM_VERSION"
   plaintext_value = var.terraform_version
 }
+
+resource "github_actions_secret" "burendo_handbook_private_github_token" {
+  repository      = github_repository.burendo_handbook.name
+  secret_name     = "GHA_TOKEN"
+  plaintext_value = var.github_token
+}
