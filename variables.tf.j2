@@ -21,6 +21,7 @@ variable "gha_aws" {
   type = object({
     access_key_id     = string
     secret_access_key = string
+    slack_build_notifications_webhook = string
   })
   description = "AWS access key and secret for GitHub Actions deployment"
 }
