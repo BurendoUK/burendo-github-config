@@ -110,5 +110,5 @@ resource "github_actions_secret" "github_username_burendo_handbook_infrastructur
 resource "github_actions_secret" "slack_build_notifications_webhook_burendo_handbook_infrastructure" {
   repository      = github_repository.burendo_handbook_infrastructure.name
   secret_name     = "SLACK_BUILD_NOTIFICATIONS_WEBHOOK"
-  plaintext_value = var.slack_build_notifications_webhook
+  plaintext_value = var.gha_aws.slack_build_notifications_webhook
 }
