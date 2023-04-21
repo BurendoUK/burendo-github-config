@@ -117,3 +117,9 @@ resource "github_actions_secret" "example_aws_account" {
   secret_name     = "ECR_AWS_ACCOUNT"
   plaintext_value = var.gha_ecr.account
 }
+
+resource "github_actions_secret" "example_slack_build_notifications_webhook" {
+  repository      = github_repository.example.name
+  secret_name     = "SLACK_BUILD_NOTIFICATIONS_WEBHOOK"
+  plaintext_value = var.slack_build_notifications_webhook
+}

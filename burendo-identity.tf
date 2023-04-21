@@ -88,3 +88,9 @@ resource "github_actions_secret" "aws_acc_mgmt_burendo_identity" {
   secret_name     = "AWS_GHA_ACC_MGMT"
   plaintext_value = local.account["burendo-mgmt"]
 }
+
+resource "github_actions_secret" "slack_build_notifications_webhook_burendo_identity" {
+  repository      = github_repository.burendo_identity.name
+  secret_name     = "SLACK_BUILD_NOTIFICATIONS_WEBHOOK"
+  plaintext_value = var.slack_build_notifications_webhook
+}
