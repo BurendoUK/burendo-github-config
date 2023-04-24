@@ -101,7 +101,7 @@ jobs:
   report-failures:
     name: Report Status
     runs-on: ubuntu-latest
-    needs: [production]
+    needs: production
     if: always()
     steps:
       - name: "Report Failures"
