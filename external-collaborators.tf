@@ -8,6 +8,7 @@ locals {
     "JarvBurendo",
     "garygreenburendo",
     "waljj1",
+    "HBoulton20",
   ])
 
   handbook_private_collaborators_github_usernames = toset([
