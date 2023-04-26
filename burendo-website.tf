@@ -52,3 +52,33 @@ resource "github_issue_label" "burendo_website" {
   name       = each.value.name
   repository = github_repository.burendo_website.name
 }
+
+resource "github_actions_secret" "aws_access_key_id_burendo_website" {
+  repository      = github_repository.burendo_website.name
+  secret_name     = "ACTIONS_ACCESS_KEY_ID"
+  plaintext_value = var.gha_aws.access_key_id
+}
+
+resource "github_actions_secret" "aws_secret_access_key_burendo_website" {
+  repository      = github_repository.burendo_website.name
+  secret_name     = "ACTIONS_SECRET_ACCESS_KEY"
+  plaintext_value = var.gha_aws.secret_access_key
+}
+
+resource "github_actions_secret" "aws_role_burendo_website" {
+  repository      = github_repository.burendo_website.name
+  secret_name     = "AWS_GHA_ROLE"
+  plaintext_value = "arn:aws:iam::${local.account["burendo-prod"]}:role/ci"
+}
+
+resource "github_actions_secret" "dev_aws_role_burendo_website" {
+  repository      = github_repository.burendo_website.name
+  secret_name     = "AWS_GHA_ROLE_DEV"
+  plaintext_value = "arn:aws:iam::${local.account["burendo-dev"]}:role/ci"
+}
+
+resource "github_actions_secret" "aws_acc_prod_burendo_website" {
+  repository      = github_repository.burendo_website.name
+  secret_name     = "AWS_GHA_ACC_PROD"
+  plaintext_value = local.account["burendo-prod"]
+}
