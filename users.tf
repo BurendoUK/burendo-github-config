@@ -1,3 +1,7 @@
+/* 
+NOTE: Add a comment with name if not obvious from username
+ */
+
 resource "github_membership" "engineering_membership_ChrisScottThomas" {
   username = "ChrisScottThomas"
   role     = "admin"
@@ -13,23 +17,18 @@ resource "github_membership" "engineering_membership_kevinkuszyk" {
   role     = "admin"
 }
 
-resource "github_membership" "engineering_membership_nomad3k" {
-  username = "nomad3k"
-  role     = "member"
-}
-
 resource "github_membership" "engineering_membership_phillip-stanley" {
   username = "phillip-stanley"
   role     = "member"
 }
 
 resource "github_membership" "engineering_membership_connoravo" {
-  username = "connoravo"
+  username = "connoravo" //Connor Avery
   role     = "member"
 }
 
 resource "github_membership" "engineering_membership_zesh92" {
-  username = "zesh92"
+  username = "zesh92" //Zeshen Zoheb
   role     = "member"
 }
 
@@ -44,7 +43,7 @@ resource "github_membership" "engineering_membership_brianbayes" {
 }
 
 resource "github_membership" "engineering_membership_rohoolio" {
-  username = "rohoolio"
+  username = "rohoolio" //Rowan Gill
   role     = "member"
 }
 
@@ -55,10 +54,5 @@ resource "github_membership" "engineering_membership_burpaulbutler" {
 
 resource "github_membership" "engineering_membership_luketowell" {
   username = "luketowell"
-  role     = "member"
-}
-
-resource "github_membership" "engineering_membership_jita81" {
-  username = "Jita81"
   role     = "member"
 }
