@@ -51,7 +51,7 @@ resource "github_repository_collaborator" "external_collaborator_bad_community_t
   permission = "push"
 }
 
-resource "github_repository_collaborator" "external_collaborator_bad_community_toolkit_jita81" {
+resource "github_repository_collaborator" "external_collaborator_handbook_public_jita81" {
   repository = "burendo-handbook-public" // Paul Glover
   username   = "jita81"
   permission = "push"
