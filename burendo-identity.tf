@@ -94,3 +94,9 @@ resource "github_actions_secret" "slack_build_notifications_webhook_burendo_iden
   secret_name     = "SLACK_BUILD_NOTIFICATIONS_WEBHOOK"
   plaintext_value = var.gha_aws.slack_build_notifications_webhook
 }
+
+resource "github_actions_secret" "slack_engineering_group_id_burendo_identity" {
+  repository      = github_repository.burendo_identity.name
+  secret_name     = "SLACK_ENGINEERING_GROUP_ID"
+  plaintext_value = var.gha_aws.slack_engineering_group_id
+}
