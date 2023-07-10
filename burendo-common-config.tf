@@ -82,3 +82,15 @@ resource "github_actions_secret" "aws_acc_prod_burendo_common_config" {
   secret_name     = "AWS_GHA_ACC_PROD"
   plaintext_value = local.account["burendo-prod"]
 }
+
+resource "github_actions_secret" "slack_build_notifications_webhook_burendo_common_config" {
+  repository      = github_repository.burendo_common_config.name
+  secret_name     = "SLACK_BUILD_NOTIFICATIONS_WEBHOOK"
+  plaintext_value = var.gha_aws.slack_build_notifications_webhook
+}
+
+resource "github_actions_secret" "slack_engineering_group_id_burendo_common_config" {
+  repository      = github_repository.burendo_common_config.name
+  secret_name     = "SLACK_ENGINEERING_GROUP_ID"
+  plaintext_value = var.gha_aws.slack_engineering_group_id
+}
