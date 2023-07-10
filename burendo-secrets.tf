@@ -52,15 +52,3 @@ resource "github_issue_label" "burendo_secrets" {
   name       = each.value.name
   repository = github_repository.burendo_secrets.name
 }
-
-resource "github_actions_secret" "burendo_secrets_slack_build_notifications_webhook" {
-  repository      = github_repository.burendo_secrets.name
-  secret_name     = "SLACK_BUILD_NOTIFICATIONS_WEBHOOK"
-  plaintext_value = var.gha_aws.slack_build_notifications_webhook
-}
-
-resource "github_actions_secret" "burendo_secrets_slack_engineering_group_id" {
-  repository      = github_repository.burendo_secrets.name
-  secret_name     = "SLACK_ENGINEERING_GROUP_ID"
-  plaintext_value = var.gha_aws.slack_engineering_group_id
-}
