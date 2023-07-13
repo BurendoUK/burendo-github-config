@@ -4,8 +4,6 @@
 
 locals {
   handbook_public_collaborators_github_usernames = toset([
-    "DaveHBurendo",
-    "JarvBurendo",
     "garygreenburendo",
     "waljj1",
     "HBoulton20",
