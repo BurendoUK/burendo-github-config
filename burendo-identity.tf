@@ -61,6 +61,12 @@ resource "github_actions_secret" "aws_terraform_version_burendo_identity" {
 
 resource "github_actions_secret" "aws_secret_access_key_burendo_identity" {
   repository      = github_repository.burendo_identity.name
+  secret_name     = "ACTIONS_ACCESS_KEY_ID"
+  plaintext_value = var.gha_aws.secret_access_key
+}
+
+resource "github_actions_secret" "aws_secret_access_key_burendo_identity" {
+  repository      = github_repository.burendo_identity.name
   secret_name     = "ACTIONS_SECRET_ACCESS_KEY"
   plaintext_value = var.gha_aws.secret_access_key
 }
