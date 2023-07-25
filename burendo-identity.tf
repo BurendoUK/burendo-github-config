@@ -94,6 +94,17 @@ resource "github_actions_secret" "aws_acc_mgmt_burendo_identity" {
   secret_name     = "AWS_GHA_ACC_MGMT"
   plaintext_value = local.account["burendo-mgmt"]
 }
+resource "github_actions_secret" "aws_dev_role_burendo_identity" {
+  repository      = github_repository.burendo_identity.name
+  secret_name     = "AWS_GHA_ROLE_DEV"
+  plaintext_value = "arn:aws:iam::${local.account["burendo-dev"]}:role/ci"
+}
+
+resource "github_actions_secret" "aws_acc_dev_burendo_identity" {
+  repository      = github_repository.burendo_identity.name
+  secret_name     = "AWS_GHA_ACC_DEV"
+  plaintext_value = local.account["burendo-dev"]
+}
 
 resource "github_actions_secret" "slack_build_notifications_webhook_burendo_identity" {
   repository      = github_repository.burendo_identity.name
