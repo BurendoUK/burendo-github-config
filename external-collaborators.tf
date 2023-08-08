@@ -8,7 +8,8 @@ locals {
     "waljj1", #Paul Glover
     "HBoulton20", #Heather Bolton
     "paddylemons1",
-    "Bex26" #Rebecca Shaw
+    "Bex26", #Rebecca Shaw
+    "wozzaRendo" #Warran Mav
   ])
 
   handbook_private_collaborators_github_usernames = toset([
