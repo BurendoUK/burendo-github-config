@@ -9,7 +9,7 @@ locals {
     "HBoulton20", #Heather Bolton
     "paddylemons1",
     "Bex26", #Rebecca Shaw
-    "wozzaRendo", #Warran Mav
+    "wozzaRendo" #Warran Mav
   ])
 
   handbook_private_collaborators_github_usernames = toset([
