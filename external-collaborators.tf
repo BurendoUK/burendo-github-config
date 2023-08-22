@@ -11,6 +11,7 @@ locals {
     "Bex26", #Rebecca Shaw
     "wozzaRendo", #Warran Mav
     "BurendoKate", #Kate Smith
+    "jrsscott", #James Scott
   ])
 
   handbook_private_collaborators_github_usernames = toset([
