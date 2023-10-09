@@ -37,11 +37,6 @@ resource "github_membership" "automation_membership_burendoci" {
   role     = "admin"
 }
 
-resource "github_membership" "engineering_membership_brianbayes" {
-  username = "brianbayes"
-  role     = "member"
-}
-
 resource "github_membership" "engineering_membership_rohoolio" {
   username = "rohoolio" //Rowan Gill
   role     = "member"
