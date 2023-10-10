@@ -61,3 +61,7 @@ To grant access to the private repo, you need to do the following:
 1. **Reverse the process when they have had their contribution PR merged**
 
 The reason private access should be removed afterwards is because it costs to give access to a private repo. **It is the responsibility of the person giving access to communicate with the person gaining access and then remove the access when they have finished**.
+
+### Offboarding
+
+When offboarding full members check both (users.tf)[users.tf] and (membership.tf)[membership.tf] for user resources.  When offboarding non-members (external collaborators), they should be removed from (external-collaborators.tf)[external-collaborators.tf]
