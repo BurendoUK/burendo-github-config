@@ -23,7 +23,7 @@ resource "github_membership" "engineering_membership_phillip-stanley" {
 }
 
 resource "github_membership" "engineering_membership_zesh92" {
-  username = "zesh92" //Zeshen Zoheb
+  username = "zesh92" //Zeshan Zoheb
   role     = "member"
 }
 
@@ -39,5 +39,10 @@ resource "github_membership" "engineering_membership_rohoolio" {
 
 resource "github_membership" "engineering_membership_luketowell" {
   username = "luketowell"
+  role     = "member"
+}
+
+resource "github_membership" "engineering_membership_kathryn-dale" {
+  username = "kathryn-dale"
   role     = "member"
 }
