@@ -23,7 +23,7 @@ resource "github_membership" "engineering_membership_phillip-stanley" {
 }
 
 resource "github_membership" "engineering_membership_zesh92" {
-  username = "zesh92" //Zeshen Zoheb
+  username = "zesh92" //Zeshan Zoheb
   role     = "member"
 }
 
