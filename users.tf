@@ -7,6 +7,11 @@ resource "github_membership" "engineering_membership_ChrisScottThomas" {
   role     = "admin"
 }
 
+resource "github_membership" "engineering_membership_connor_avery" {
+  username = "connoravo"
+  role     = "admin"
+}
+
 resource "github_membership" "engineering_membership_steveburtonBUR" {
   username = "steveburtonBUR"
   role     = "admin"
@@ -44,5 +49,10 @@ resource "github_membership" "engineering_membership_luketowell" {
 
 resource "github_membership" "engineering_membership_kathryn-dale" {
   username = "kathryn-dale"
+  role     = "member"
+}
+
+resource "github_membership" "engineering_membership_emily_evans" {
+  username = "emilyjevans"
   role     = "member"
 }
