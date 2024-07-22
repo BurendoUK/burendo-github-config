@@ -39,7 +39,7 @@ If you need to rename the terraform state file for any reason:
 
 ## Handbook access
 
-There are two types of Handbook access that will be requested from Burendoers - public content and private content. They will do this via the `#cop-engineering` slack channel. You will only need their username for either.
+There are two types of Handbook access that will be requested from Burendoers - public content and private content. They will do this via the `#practice-engineering` slack channel. You will only need their username for either.
 
 **Access should only be given to current Burendoers**. If people outside Burendo spot mistakes or otherwise and would like to contribute fixes to public content, the guide for them is to fork the public repository and submit a PR, so they don't need access in code.
 
