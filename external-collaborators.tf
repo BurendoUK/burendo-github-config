@@ -5,13 +5,14 @@
 locals {
   handbook_public_collaborators_github_usernames = toset([
     "garygreenburendo",
-    "waljj1", #Paul Glover
+    "waljj1",     #Paul Glover
     "HBoulton20", #Heather Bolton
     "paddylemons1",
-    "Bex26", #Rebecca Shaw
-    "wozzaRendo", #Warran Mav
+    "Bex26",       #Rebecca Shaw
+    "wozzaRendo",  #Warran Mav
     "BurendoKate", #Kate Smith
-    "jrsscott", #James Scott
+    "jrsscott",    #James Scott
+    "rhrh19",      #Richard Hardicre
   ])
 
   handbook_private_collaborators_github_usernames = toset([
