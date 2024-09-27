@@ -61,3 +61,13 @@ resource "github_membership" "engineering_membership_joshua_douce" {
   username = "JoshuaDouceBurendo"
   role     = "admin"
 }
+
+resource "github_membership" "engineering_membership_natasha_myers" {
+  username = "natashaburendo"
+  role     = "member"
+}
+
+resource "github_membership" "engineering_membership_ramon_rodriguez" {
+  username = "ramonrodriguez-burendo"
+  role     = "member"
+}
