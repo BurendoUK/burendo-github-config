@@ -86,3 +86,15 @@ resource "github_team_membership" "engineering_membership_ramon_rodriguez" {
   username = "ramonrodriguez-burendo"
   role     = "member"
 }
+
+resource "github_team_membership" "engineering_membership_mauro_sorrentino" {
+  team_id  = github_team.engineering.id
+  username = "maurosorrentinoburendo"
+  role     = "member"
+}
+
+resource "github_team_membership" "engineering_membership_juliano_lombardi" {
+  team_id  = github_team.engineering.id
+  username = "julianoburendo"
+  role     = "member"
+}
