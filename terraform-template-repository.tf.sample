@@ -34,7 +34,7 @@ resource "github_team_repository" "example_admin" {
 resource "github_branch_protection" "example_main" {
   pattern        = github_repository.example.default_branch
   repository_id     = github_repository.example.name
-  enforce_admins = false
+  enforce_admins = true
 
   required_status_checks {
     strict = true

@@ -34,7 +34,7 @@ resource "github_team_repository" "burendo_vpn_admin" {
 resource "github_branch_protection" "burendo_vpn_main" {
   pattern        = github_repository.burendo_vpn.default_branch
   repository_id  = github_repository.burendo_vpn.name
-  enforce_admins = false
+  enforce_admins = true
 
   required_status_checks {
     strict = true
