@@ -1,8 +1,8 @@
-resource "github_repository" "example" {
-  name             = "example"
-  description      = "example"
-  visibility       = "public"
-  auto_init        = false
+resource "github_repository" "burendo_vpn" {
+  name        = "burendo-vpn-infrastructure"
+  description = "Burendo VPN"
+  visibility  = "private"
+  auto_init   = false
 
   allow_merge_commit     = false
   delete_branch_on_merge = true
@@ -14,26 +14,26 @@ resource "github_repository" "example" {
   }
 
   template {
-    owner = var.github_org
-    repository = "burendo-repo-template-terraform"
+    owner      = var.github_org
+    repository = "burendo-vpn"
   }
 }
 
-resource "github_team_repository" "example_burendo" {
-  repository = github_repository.example.name
+resource "github_team_repository" "burendo_vpn_burendo" {
+  repository = github_repository.burendo_vpn.name
   team_id    = github_team.burendo.id
   permission = "push"
 }
 
-resource "github_team_repository" "example_admin" {
-  repository = github_repository.example.name
+resource "github_team_repository" "burendo_vpn_admin" {
+  repository = github_repository.burendo_vpn.name
   team_id    = github_team.engineering.id
   permission = "admin"
 }
 
-resource "github_branch_protection" "example_main" {
-  pattern        = github_repository.example.default_branch
-  repository_id     = github_repository.example.name
+resource "github_branch_protection" "burendo_vpn_main" {
+  pattern        = github_repository.burendo_vpn.default_branch
+  repository_id  = github_repository.burendo_vpn.name
   enforce_admins = true
 
   required_status_checks {
@@ -46,9 +46,9 @@ resource "github_branch_protection" "example_main" {
   }
 }
 
-resource "github_issue_label" "example" {
+resource "github_issue_label" "burendo_vpn" {
   for_each   = { for common_label in local.common_labels : common_label.name => common_label }
   color      = each.value.colour
   name       = each.value.name
-  repository = github_repository.example.name
+  repository = github_repository.burendo_vpn.name
 }
