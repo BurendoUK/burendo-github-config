@@ -15,7 +15,7 @@ resource "github_repository" "burendo_vpn" {
 
   template {
     owner      = var.github_org
-    repository = "burendo-vpn"
+    repository = "burendo-vpn-infrastructure"
   }
 }
 
