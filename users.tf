@@ -76,8 +76,3 @@ resource "github_membership" "engineering_membership_mauro_sorrentino" {
   username = "maurosorrentinoburendo"
   role     = "member"
 }
-
-resource "github_membership" "engineering_membership_juliano_lombardi" {
-  username = "julianoburendo"
-  role     = "member"
-}

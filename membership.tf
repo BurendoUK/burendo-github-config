@@ -2,7 +2,7 @@
 NOTE: We have 15 seats available overall, if your addition goes above that
 you need a discussion with Steven and/or Chris first
 */
- 
+
 resource "github_team_membership" "engineering_membership_ChrisScottThomas" {
   team_id  = github_team.engineering.id
   username = "ChrisScottThomas"
@@ -90,11 +90,5 @@ resource "github_team_membership" "engineering_membership_ramon_rodriguez" {
 resource "github_team_membership" "engineering_membership_mauro_sorrentino" {
   team_id  = github_team.engineering.id
   username = "maurosorrentinoburendo"
-  role     = "member"
-}
-
-resource "github_team_membership" "engineering_membership_juliano_lombardi" {
-  team_id  = github_team.engineering.id
-  username = "julianoburendo"
   role     = "member"
 }
