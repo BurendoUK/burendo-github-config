@@ -27,8 +27,8 @@ resource "github_membership" "engineering_membership_phillip-stanley" {
   role     = "member"
 }
 
-resource "github_membership" "engineering_membership_zesh92" {
-  username = "zesh92" //Zeshan Zoheb
+resource "github_membership" "engineering_membership_Jita81" {
+  username = "Jita81" //Paul Glover
   role     = "member"
 }
 
