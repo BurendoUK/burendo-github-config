@@ -36,21 +36,3 @@ resource "github_repository_collaborator" "external_collaborator_burendo_handboo
 /*
   COLLABORATORS FOR OTHER REPOS
 */
-
-resource "github_repository_collaborator" "external_collaborator_generator_aws_api_xlasercut" {
-  repository = "generator-aws-api"
-  username   = "xLasercut"
-  permission = "push"
-}
-
-resource "github_repository_collaborator" "external_collaborator_generator_aws_api_jaklinger" {
-  repository = "generator-aws-api"
-  username   = "jaklinger"
-  permission = "push"
-}
-
-resource "github_repository_collaborator" "external_collaborator_bad_community_toolkit_garygreenburendo" {
-  repository = "bad-community-toolkit"
-  username   = "garygreenburendo"
-  permission = "push"
-}
