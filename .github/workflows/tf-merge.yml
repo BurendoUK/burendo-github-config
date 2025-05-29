@@ -9,6 +9,9 @@ on:
       - ".github/workflows/**"
   workflow_dispatch: {}
 
+env:
+  LOG_FILE_NAME: ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+
 jobs:
   production:
     name: "Terraform Apply Production"
@@ -40,7 +43,7 @@ jobs:
       - name: "Bootstrap"
         id: bootstrap
         run: |
-          python bootstrap.py > ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+          python bootstrap.py > $LOG_FILE_NAME
           sed -i "s/Administrator/ci/" variables.tf
         working-directory: .
         env:
@@ -50,7 +53,7 @@ jobs:
 
       - name: "Terraform Init"
         id: init
-        run: terraform init >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+        run: terraform init >> $LOG_FILE_NAME
         env:
           TF_WORKSPACE: default
           AWS_DEFAULT_REGION: eu-west-2
@@ -58,8 +61,10 @@ jobs:
       - name: "Terraform Apply"
         id: apply
         run: |
-          terraform plan -no-color -out terraform.plan >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
-          terraform apply -no-color -auto-approve terraform.plan >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+          set -e
+          terraform plan -no-color -out terraform.plan >> $LOG_FILE_NAME
+          terraform apply -no-color -auto-approve terraform.plan >> $LOG_FILE_NAME
+          echo "Apply exit code: $?" >> "$LOG_FILE_NAME"
         env:
           TF_WORKSPACE: default
           TF_INPUT: false
@@ -68,7 +73,10 @@ jobs:
       - name: "Terraform Plan"
         id: plan
         if: steps.apply.outcome == 'success'
-        run: terraform plan -no-color -detailed-exitcode >> ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+        run: |
+          set -e
+          terraform plan -no-color -detailed-exitcode >> $LOG_FILE_NAME
+          echo "Apply exit code: $?" >> "$LOG_FILE_NAME"
         env:
           TF_WORKSPACE: default
           TF_INPUT: false
@@ -85,7 +93,7 @@ jobs:
         if: ${{ always() }}
         id: redact-apply-logs-prod
         run: |
-              sed -i "s/$ACC_PROD/REDACTED/g" ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+              sed -i "s/$ACC_PROD/REDACTED/g" $LOG_FILE_NAME
         shell: bash
         env:
           ACC_PROD: ${{ secrets.AWS_GHA_ACC_PROD }}
@@ -96,7 +104,7 @@ jobs:
         if: ${{ failure() }}
         with:
           name: prod-workflow-log
-          path: ${{ github.workspace }}/${{ github.run_id }}-${{ github.run_number }}.log
+          path: $LOG_FILE_NAME
 
       - name: "Report Success"
         uses: ravsamhq/notify-slack-action@v1
