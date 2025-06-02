@@ -1,7 +1,7 @@
 resource "github_repository" "burendo_oddfellows_pt_infra" {
   name        = "burendo-oddfellows-pt-infra"
   description = "Front end repo for the Oddfellows prototype"
-  visibility  = "public"
+  visibility  = "private"
   auto_init   = false
 
   allow_merge_commit     = false
