@@ -32,8 +32,8 @@ resource "github_team_repository" "burendo_tech_test_admin" {
 }
 
 resource "github_branch_protection" "burendo_tech_test_main" {
-  pattern        = github_repository.example.default_branch
-  repository_id     = github_repository.example.name
+  pattern        = github_repository.burendo_tech_test.default_branch
+  repository_id     = github_repository.burendo_tech_test.name
   enforce_admins = true
 
   required_status_checks {
