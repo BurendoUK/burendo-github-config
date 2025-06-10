@@ -16,6 +16,10 @@ locals {
 
   handbook_private_collaborators_github_usernames = toset([
   ])
+
+  oddfellows_private_collaborators_github_usernames = toset([
+    "simonf-burendo", # Simon Futter Contractor
+  ])
 }
 
 resource "github_repository_collaborator" "external_collaborator_burendo_handbook_public" {
@@ -35,3 +39,10 @@ resource "github_repository_collaborator" "external_collaborator_burendo_handboo
 /*
   COLLABORATORS FOR OTHER REPOS
 */
+
+resource "github_repository_collaborator" "external_collaborator_burendo_oddfellows_pt_frontend" {
+  for_each   = local.oddfellows_private_collaborators_github_usernames
+  repository = "burendo-oddfellows-pt-frontend"
+  username   = each.key
+  permission = "push"
+}
