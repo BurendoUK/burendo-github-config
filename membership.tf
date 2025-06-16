@@ -120,5 +120,5 @@ resource "github_team_membership" "engineering_membership_sam_aki" {
 resource "github_team_membership" "engineering_membership_chris_ramsden" {
   team_id  = github_team.engineering.id
   username = "tvking"
-  role     = "member"
+  role     = "maintainer"
 }
