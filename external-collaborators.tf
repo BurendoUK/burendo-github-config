@@ -71,3 +71,10 @@ resource "github_repository_collaborator" "external_collaborator_data_dashboard_
   username   = each.key
   permission = "push"
 }
+
+resource "github_repository_collaborator" "external_collaboratorn_nhs_dashboard_tooling_private" {
+  for_each   = local.data_dashboard_public_collaborators_github_usernames
+  repository = "nhs-dashboard-tooling"
+  username   = each.key
+  permission = "push"
+}
