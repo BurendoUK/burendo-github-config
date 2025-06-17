@@ -1,6 +1,6 @@
 resource "github_repository" "burendo_nhs_dashboard_poc" {
   name             = "burendo-nhs-dashboard-poc"
-  description      = "Repo to hold the poc for the NHS Data Dashboard project."
+  description      = "Repo to hold the POC for the NHS Data Dashboard project."
   visibility       = "private"
   auto_init        = false
 
