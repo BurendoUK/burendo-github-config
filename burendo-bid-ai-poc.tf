@@ -1,7 +1,7 @@
 resource "github_repository" "burendo_bid_ai_poc" {
   name             = "burendo-bid-ai-poc"
   description      = "A Bid AI PoC for assisting with the answering of bid questions using Anthropic Claude-Sonnet 3.7 via Bedrock"
-  visibility       = "public"
+  visibility       = "private"
   auto_init        = false
 
   allow_merge_commit     = false
