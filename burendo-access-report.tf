@@ -52,3 +52,9 @@ resource "github_issue_label" "burendo_access_report" {
   name       = each.value.name
   repository = github_repository.burendo_access_report.name
 }
+
+resource "github_actions_secret" "burendo_access_report_github_token" {
+  repository      = github_repository.burendo_access_report.name
+  secret_name     = "GHA_TOKEN"
+  plaintext_value = var.github_token
+}
