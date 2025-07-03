@@ -70,3 +70,26 @@ resource "github_actions_secret" "slack_engineering_group_id_burendo_access_repo
   secret_name     = "SLACK_ENGINEERING_GROUP_ID"
   plaintext_value = var.gha_aws.slack_engineering_group_id
 }
+
+resource "github_actions_secret" "aws_access_key_id_burendo_access_report" {
+  repository      = github_repository.burendo_access_report.name
+  secret_name     = "ACTIONS_ACCESS_KEY_ID"
+  plaintext_value = var.gha_aws.access_key_id
+}
+
+resource "github_actions_secret" "aws_secret_access_key_burendo_access_report" {
+  repository      = github_repository.burendo_access_report.name
+  secret_name     = "ACTIONS_SECRET_ACCESS_KEY"
+  plaintext_value = var.gha_aws.secret_access_key
+}
+
+resource "github_actions_secret" "s3_bucket_name_burendo_access_report" {
+  repository      = github_repository.burendo_access_report.name
+  secret_name     = "S3_BUCKET_NAME"
+  plaintext_value = "door-access-control"
+}
+resource "github_actions_secret" "s3_bucket_name_burendo_access_report_dev" {
+  repository      = github_repository.burendo_access_report.name
+  secret_name     = "S3_DEV_BUCKET_NAME"
+  plaintext_value = "door-access-control-dev"
+}
