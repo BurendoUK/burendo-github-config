@@ -58,3 +58,15 @@ resource "github_actions_secret" "burendo_access_report_github_token" {
   secret_name     = "GHA_TOKEN"
   plaintext_value = var.github_token
 }
+
+resource "github_actions_secret" "slack_build_notifications_webhook_burendo_access_report" {
+  repository      = github_repository.burendo_access_report.name
+  secret_name     = "SLACK_BUILD_NOTIFICATIONS_WEBHOOK"
+  plaintext_value = var.gha_aws.slack_build_notifications_webhook
+}
+
+resource "github_actions_secret" "slack_engineering_group_id_burendo_access_report" {
+  repository      = github_repository.burendo_access_report.name
+  secret_name     = "SLACK_ENGINEERING_GROUP_ID"
+  plaintext_value = var.gha_aws.slack_engineering_group_id
+}
