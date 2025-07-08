@@ -1,5 +1,5 @@
 resource "github_repository" "burendo_toolbox_infrastructure" {
-  name                 = "burendo_toolbox_infrastructure"
+  name                 = "burendo-toolbox-infrastructure"
   description          = "Infrastructure for the Burendo Toolbox"
   visibility           = "public"
   vulnerability_alerts = "false"
