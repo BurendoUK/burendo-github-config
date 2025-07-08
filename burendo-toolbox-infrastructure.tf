@@ -1,8 +1,9 @@
 resource "github_repository" "burendo_toolbox_infrastructure" {
-  name        = "burendo_toolbox_infrastructure"
-  description = "Infrastructure for the Burendo Toolbox"
-  visibility  = "public"
-  auto_init   = false
+  name                 = "burendo_toolbox_infrastructure"
+  description          = "Infrastructure for the Burendo Toolbox"
+  visibility           = "public"
+  vulnerability_alerts = "false"
+  auto_init            = false
 
   allow_merge_commit     = false
   delete_branch_on_merge = true
