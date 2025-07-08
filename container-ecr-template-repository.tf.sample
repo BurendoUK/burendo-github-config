@@ -2,6 +2,7 @@ resource "github_repository" "example" {
   name                   = "example"
   description            = "example"
   visibility              = "public"
+  vulnerability_alerts = "false"
   auto_init              = false
 
   allow_merge_commit     = false
