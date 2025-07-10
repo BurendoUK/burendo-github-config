@@ -89,6 +89,12 @@ resource "github_actions_secret" "dev_aws_role_burendo_burendo_access_report" {
   plaintext_value = "arn:aws:iam::${local.account["burendo-dev"]}:role/ci"
 }
 
+resource "github_actions_secret" "prod_aws_role_burendo_burendo_access_report" {
+  repository      = github_repository.burendo_access_report.name
+  secret_name     = "AWS_GHA_ROLE"
+  plaintext_value = "arn:aws:iam::${local.account["burendo-prod"]}:role/ci"
+}
+
 resource "github_actions_secret" "s3_bucket_name_burendo_access_report" {
   repository      = github_repository.burendo_access_report.name
   secret_name     = "S3_BUCKET_NAME"
