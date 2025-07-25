@@ -8,7 +8,7 @@ resource "github_repository" "safeshout_infra" {
   allow_merge_commit     = false
   delete_branch_on_merge = true
   has_issues             = true
-  topics                 = local.common_topics
+  topics                 = concat(local.common_topics, local.aws_topics)
 
   lifecycle {
     prevent_destroy = true
@@ -16,7 +16,7 @@ resource "github_repository" "safeshout_infra" {
 
   template {
     owner = var.github_org
-    repository = "burendo-repo-template"
+    repository = "burendo-repo-template-terraform"
   }
 }
 
