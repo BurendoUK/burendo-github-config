@@ -83,3 +83,21 @@ resource "github_actions_secret" "aws_acc_dev_safeshout_infra" {
   secret_name     = "AWS_GHA_ACC_DEV"
   plaintext_value = local.account["burendo-dev"]
 }
+
+resource "github_actions_secret" "aws_dev_role_safeshout_infra_gha_role_dev" {
+  repository      = github_repository.safeshout_infra.name
+  secret_name     = "AWS_GHA_ROLE_SAFESHOUT_DEV"
+  plaintext_value = "arn:aws:iam::${local.account["safeshout-dev"]}:role/ci"
+}
+
+resource "github_actions_secret" "aws_dev_role_safeshout_infra_gha_role_mgmt" {
+  repository      = github_repository.safeshout_infra.name
+  secret_name     = "AWS_GHA_ROLE_SAFESHOUT_MGMT"
+  plaintext_value = "arn:aws:iam::${local.account["safeshout-mgmt"]}:role/ci"
+}
+
+resource "github_actions_secret" "aws_dev_role_safeshout_infra_gha_role_staging" {
+  repository      = github_repository.safeshout_infra.name
+  secret_name     = "AWS_GHA_ROLE_SAFESHOUT_STAGING"
+  plaintext_value = "arn:aws:iam::${local.account["safeshout-staging"]}:role/ci"
+}
