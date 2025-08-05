@@ -53,3 +53,27 @@ resource "github_issue_label" "safeshout_project_information" {
   name       = each.value.name
   repository = github_repository.safeshout_project_information.name
 }
+
+resource "github_actions_secret" "aws_access_key_id_safeshout_project_information" {
+  repository      = github_repository.safeshout_project_information.name
+  secret_name     = "ACTIONS_ACCESS_KEY_ID"
+  plaintext_value = var.gha_aws.access_key_id
+}
+
+resource "github_actions_secret" "aws_secret_access_key_safeshout_project_information" {
+  repository      = github_repository.safeshout_project_information.name
+  secret_name     = "ACTIONS_SECRET_ACCESS_KEY"
+  plaintext_value = var.gha_aws.secret_access_key
+}
+
+resource "github_actions_secret" "aws_dev_role_safeshout_project_information" {
+  repository      = github_repository.safeshout_project_information.name
+  secret_name     = "AWS_GHA_ROLE_DEV"
+  plaintext_value = "arn:aws:iam::${local.account["burendo-dev"]}:role/ci"
+}
+
+resource "github_actions_secret" "aws_acc_dev_safeshout_project_information" {
+  repository      = github_repository.safeshout_project_information.name
+  secret_name     = "AWS_GHA_ACC_DEV"
+  plaintext_value = local.account["burendo-dev"]
+}
