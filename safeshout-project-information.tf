@@ -95,3 +95,21 @@ resource "github_actions_secret" "aws_dev_role_safeshout_project_information_gha
   secret_name     = "AWS_GHA_ROLE_SAFESHOUT_STAGING"
   plaintext_value = "arn:aws:iam::${local.account["safeshout-staging"]}:role/ci"
 }
+
+resource "github_actions_secret" "aws_dev_role_safeshout_project_information_account_id_staging" {
+  repository      = github_repository.safeshout_project_information.name
+  secret_name     = "AWS_SAFESHOUT_ACCOUNT_ID_STAGING"
+  plaintext_value = "${local.account["safeshout-staging"]}"
+}
+
+resource "github_actions_secret" "aws_dev_role_safeshout_project_information_account_id_mgmt" {
+  repository      = github_repository.safeshout_project_information.name
+  secret_name     = "AWS_SAFESHOUT_ACCOUNT_ID_MGMT"
+  plaintext_value = "${local.account["safeshout-mgmt"]}"
+}
+
+resource "github_actions_secret" "aws_dev_role_safeshout_project_information_account_id_dev" {
+  repository      = github_repository.safeshout_project_information.name
+  secret_name     = "AWS_SAFESHOUT_ACCOUNT_ID_DEV"
+  plaintext_value = "${local.account["safeshout-dev"]}"
+}
