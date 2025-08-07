@@ -21,6 +21,8 @@ variable "gha_aws" {
   type = object({
     access_key_id     = string
     secret_access_key = string
+    safeshout_mgmt_access_key_id = string
+    safeshout_mgmt_secret_access_key = string
     slack_build_notifications_webhook = string
     slack_engineering_group_id = string
   })

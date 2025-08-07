@@ -54,62 +54,32 @@ resource "github_issue_label" "safeshout_frontend" {
   repository = github_repository.safeshout_frontend.name
 }
 
-resource "github_actions_secret" "aws_access_key_id_safeshout_frontend" {
-  repository      = github_repository.safeshout_frontend.name
-  secret_name     = "ACTIONS_ACCESS_KEY_ID"
-  plaintext_value = var.gha_aws.access_key_id
-}
-
-resource "github_actions_secret" "aws_secret_access_key_safeshout_frontend" {
-  repository      = github_repository.safeshout_frontend.name
-  secret_name     = "ACTIONS_SECRET_ACCESS_KEY"
-  plaintext_value = var.gha_aws.secret_access_key
-}
-
-resource "github_actions_secret" "aws_dev_role_safeshout_frontend" {
-  repository      = github_repository.safeshout_frontend.name
-  secret_name     = "AWS_GHA_ROLE_DEV"
-  plaintext_value = "arn:aws:iam::${local.account["burendo-dev"]}:role/ci"
-}
-
-resource "github_actions_secret" "aws_acc_dev_safeshout_frontend" {
-  repository      = github_repository.safeshout_frontend.name
-  secret_name     = "AWS_GHA_ACC_DEV"
-  plaintext_value = local.account["burendo-dev"]
-}
-
 resource "github_actions_secret" "aws_dev_role_safeshout_frontend_gha_role_dev" {
   repository      = github_repository.safeshout_frontend.name
   secret_name     = "AWS_GHA_ROLE_SAFESHOUT_DEV"
-  plaintext_value = "arn:aws:iam::${local.account["safeshout-dev"]}:role/ci"
+  plaintext_value = "arn:aws:iam::${local.account["safeshout-dev"]}:role/SafeshoutCI"
 }
 
 resource "github_actions_secret" "aws_dev_role_safeshout_frontend_gha_role_mgmt" {
   repository      = github_repository.safeshout_frontend.name
   secret_name     = "AWS_GHA_ROLE_SAFESHOUT_MGMT"
-  plaintext_value = "arn:aws:iam::${local.account["safeshout-mgmt"]}:role/ci"
+  plaintext_value = "arn:aws:iam::${local.account["safeshout-mgmt"]}:role/SafeshoutCI"
 }
 
 resource "github_actions_secret" "aws_dev_role_safeshout_frontend_gha_role_staging" {
   repository      = github_repository.safeshout_frontend.name
   secret_name     = "AWS_GHA_ROLE_SAFESHOUT_STAGING"
-  plaintext_value = "arn:aws:iam::${local.account["safeshout-staging"]}:role/ci"
+  plaintext_value = "arn:aws:iam::${local.account["safeshout-staging"]}:role/SafeshoutCI"
 }
 
-resource "github_actions_secret" "aws_dev_role_safeshout_frontend_account_id_staging" {
+resource "github_actions_secret" "aws_safeshout_mgmt_access_key_id_safeshout_frontend" {
   repository      = github_repository.safeshout_frontend.name
-  secret_name     = "AWS_SAFESHOUT_ACCOUNT_ID_STAGING"
-  plaintext_value = "${local.account["safeshout-staging"]}"
+  secret_name     = "ACTIONS_SAFESHOUT_MGMT_ACCESS_KEY_ID"
+  plaintext_value = var.gha_aws.safeshout_mgmt_access_key_id
 }
 
-resource "github_actions_secret" "aws_dev_role_safeshout_frontend_account_id_mgmt" {
+resource "github_actions_secret" "aws_safeshout_mgmt_secret_access_key_safeshout_frontend" {
   repository      = github_repository.safeshout_frontend.name
-  secret_name     = "AWS_SAFESHOUT_ACCOUNT_ID_MGMT"
-  plaintext_value = "${local.account["safeshout-mgmt"]}"
-}
-
-resource "github_actions_secret" "aws_dev_role_safeshout_frontend_account_id_dev" {
-  repository      = github_repository.safeshout_frontend.name
-  secret_name     = "AWS_SAFESHOUT_ACCOUNT_ID_DEV"
-  plaintext_value = "${local.account["safeshout-dev"]}"
+  secret_name     = "ACTIONS_SAFESHOUT_MGMT_SECRET_ACCESS_KEY"
+  plaintext_value = var.gha_aws.safeshout_mgmt_secret_access_key
 }
