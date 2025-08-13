@@ -39,6 +39,9 @@ resource "github_branch_protection" "safeshout_frontend_main" {
 
   required_status_checks {
     strict = true
+    contexts = [
+      "Check Amplify Build Status", "Claude Code Review"
+    ]
   }
 
   required_pull_request_reviews {
