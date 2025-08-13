@@ -39,6 +39,9 @@ resource "github_branch_protection" "safeshout_infra_main" {
 
   required_status_checks {
     strict = true
+    contexts = [
+      "Claude Code Review", "Deploy to Development Environment"
+    ]
   }
 
   required_pull_request_reviews {
