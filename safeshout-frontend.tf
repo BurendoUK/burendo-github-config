@@ -90,5 +90,5 @@ resource "github_actions_secret" "aws_safeshout_mgmt_secret_access_key_safeshout
 resource "github_actions_secret" "slack_safeshout_webhook_safeshout_frontend" {
   repository      = github_repository.safeshout_frontend.name
   secret_name     = "SLACK_SAFESHOUT_BUILD_NOTIFICATIONS_WEBHOOK"
-  plaintext_value = var.gha_aws.slack_build_notifications_webhook
+  plaintext_value = var.gha_aws.slack_safeshout_build_notifications_webhook
 }
