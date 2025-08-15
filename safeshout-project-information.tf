@@ -34,8 +34,8 @@ resource "github_team_repository" "safeshout_project_information_admin" {
 
 resource "github_branch_protection" "safeshout_project_information_main" {
   pattern        = github_repository.safeshout_project_information.default_branch
-  repository_id     = github_repository.safeshout_project_information.name
-  enforce_admins = true
+  repository_id  = github_repository.safeshout_project_information.name
+  enforce_admins = false
 
   required_status_checks {
     strict = true

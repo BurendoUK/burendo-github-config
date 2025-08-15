@@ -19,7 +19,7 @@ resource "github_membership" "engineering_membership_steveburtonBUR" {
 
 resource "github_membership" "engineering_membership_kevinkuszyk" {
   username = "kevinkuszyk"
-  role     = "admin"
+  role     = "member"
 }
 
 resource "github_membership" "engineering_membership_phillip-stanley" {
@@ -59,7 +59,7 @@ resource "github_membership" "engineering_membership_emily_evans" {
 
 resource "github_membership" "engineering_membership_joshua_douce" {
   username = "JoshuaDouceBurendo"
-  role     = "admin"
+  role     = "member"
 }
 
 resource "github_membership" "engineering_membership_natasha_myers" {
@@ -99,7 +99,7 @@ resource "github_membership" "engineering_membership_sam_aki" {
 
 resource "github_membership" "engineering_membership_chris_ramsden" {
   username = "tvking"
-  role     = "admin"
+  role     = "member"
 }
 
 resource "github_membership" "engineering_membership_matt_munro" {
