@@ -77,11 +77,6 @@ resource "github_membership" "engineering_membership_mauro_sorrentino" {
   role     = "member"
 }
 
-resource "github_membership" "engineering_membership_ivor_caldwell" {
-  username = "ivorc"
-  role     = "member"
-}
-
 resource "github_membership" "engineering_membership_paul_walkington" {
   username = "paulwalkington"
   role     = "member"
@@ -116,4 +111,3 @@ resource "github_membership" "engineering_membership_chris_warren" {
   username = "jumpertester"
   role     = "member"
 }
-
