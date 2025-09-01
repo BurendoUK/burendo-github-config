@@ -110,3 +110,15 @@ resource "github_actions_secret" "slack_safeshout_dashboard_password_safeshout_f
   secret_name     = "SAFESHOUT_DASHBOARD_PASSWORD"
   plaintext_value = var.gha_aws.safeshout_dashboard_password
 }
+
+resource "github_actions_secret" "slack_safeshout_auth_username_safeshout_frontend" {
+  repository      = github_repository.safeshout_frontend.name
+  secret_name     = "SAFESHOUT_AUTH_USERNAME"
+  plaintext_value = var.gha_aws.safeshout_auth_username
+}
+
+resource "github_actions_secret" "slack_safeshout_auth_password_safeshout_frontend" {
+  repository      = github_repository.safeshout_frontend.name
+  secret_name     = "SAFESHOUT_AUTH_PASSWORD"
+  plaintext_value = var.gha_aws.safeshout_auth_password
+}
