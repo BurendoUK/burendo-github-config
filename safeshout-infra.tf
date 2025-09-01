@@ -98,3 +98,15 @@ resource "github_actions_secret" "safeshout_infra_report_github_token" {
   secret_name     = "GHA_TOKEN"
   plaintext_value = var.github_token
 }
+  
+resource "github_actions_secret" "slack_safeshout_dashboard_username_safeshout_infra" {
+  repository      = github_repository.safeshout_infra.name
+  secret_name     = "SAFESHOUT_DASHBOARD_USERNAME"
+  plaintext_value = var.gha_aws.safeshout_dashboard_username
+}
+
+resource "github_actions_secret" "slack_safeshout_dashboard_password_safeshout_infra" {
+  repository      = github_repository.safeshout_infra.name
+  secret_name     = "SAFESHOUT_DASHBOARD_PASSWORD"
+  plaintext_value = var.gha_aws.safeshout_dashboard_password
+}
