@@ -90,6 +90,12 @@ resource "github_actions_secret" "slack_safeshout_webhook_safeshout_project_info
   plaintext_value = var.gha_aws.slack_safeshout_build_notifications_webhook
 }
 
+resource "github_actions_secret" "safeshout_project_information_report_github_token" {
+  repository      = github_repository.safeshout_project_information.name
+  secret_name     = "GHA_TOKEN"
+  plaintext_value = var.github_token
+}
+  
 resource "github_actions_secret" "slack_safeshout_dashboard_username_safeshout_project_information" {
   repository      = github_repository.safeshout_project_information.name
   secret_name     = "SAFESHOUT_DASHBOARD_USERNAME"
