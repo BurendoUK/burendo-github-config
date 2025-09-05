@@ -95,27 +95,3 @@ resource "github_actions_secret" "safeshout_project_information_report_github_to
   secret_name     = "GHA_TOKEN"
   plaintext_value = var.github_token
 }
-  
-resource "github_actions_secret" "slack_safeshout_dashboard_username_safeshout_project_information" {
-  repository      = github_repository.safeshout_project_information.name
-  secret_name     = "SAFESHOUT_DASHBOARD_USERNAME"
-  plaintext_value = var.gha_aws.safeshout_dashboard_username
-}
-
-resource "github_actions_secret" "slack_safeshout_dashboard_password_safeshout_project_information" {
-  repository      = github_repository.safeshout_project_information.name
-  secret_name     = "SAFESHOUT_DASHBOARD_PASSWORD"
-  plaintext_value = var.gha_aws.safeshout_dashboard_password
-}
-
-resource "github_actions_secret" "slack_safeshout_auth_username_safeshout_project_information" {
-  repository      = github_repository.safeshout_project_information.name
-  secret_name     = "SAFESHOUT_AUTH_USERNAME"
-  plaintext_value = var.gha_aws.safeshout_auth_username
-}
-
-resource "github_actions_secret" "slack_safeshout_auth_password_safeshout_project_information" {
-  repository      = github_repository.safeshout_project_information.name
-  secret_name     = "SAFESHOUT_AUTH_PASSWORD"
-  plaintext_value = var.gha_aws.safeshout_auth_password
-}
