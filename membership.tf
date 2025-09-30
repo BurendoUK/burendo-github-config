@@ -1,14 +1,7 @@
 /* 
 NOTE: We have 15 seats available overall, if your addition goes above that
-you need a discussion with Steven and/or Chris first
+you need a discussion with Steven first
 */
-
-resource "github_team_membership" "engineering_membership_ChrisScottThomas" {
-  team_id  = github_team.engineering.id
-  username = "ChrisScottThomas"
-  role     = "maintainer"
-}
-
 resource "github_team_membership" "engineering_membership_steveburtonBUR" {
   team_id  = github_team.engineering.id
   username = "steveburtonBUR"

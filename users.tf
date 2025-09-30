@@ -2,11 +2,6 @@
 NOTE: Add a comment with name if not obvious from username
  */
 
-resource "github_membership" "engineering_membership_ChrisScottThomas" {
-  username = "ChrisScottThomas"
-  role     = "admin"
-}
-
 resource "github_membership" "engineering_membership_connor_avery" {
   username = "connoravo"
   role     = "admin"
