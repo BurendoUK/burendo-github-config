@@ -1,6 +1,6 @@
 /* 
 NOTE: We have 15 seats available overall, if your addition goes above that
-you need a discussion with Steven first
+you need a discussion with an admin member in charge of github first
 */
 resource "github_team_membership" "engineering_membership_ConnorAvery" {
   team_id  = github_team.engineering.id
