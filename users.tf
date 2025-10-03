@@ -7,11 +7,6 @@ resource "github_membership" "engineering_membership_connor_avery" {
   role     = "admin"
 }
 
-resource "github_membership" "engineering_membership_steveburtonBUR" {
-  username = "steveburtonBUR"
-  role     = "admin"
-}
-
 resource "github_membership" "engineering_membership_kevinkuszyk" {
   username = "kevinkuszyk"
   role     = "member"
