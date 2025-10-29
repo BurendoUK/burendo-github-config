@@ -139,3 +139,9 @@ resource "github_team_membership" "engineering_membership_mark_matthews" {
   username = "mark-r-m" // Mark Matthews
   role     = "member"
 }
+
+resource "github_team_membership" "engineering_membership_tom_moreton" {
+  team_id  = github_team.engineering.id
+  username = "tamoreton" // Tom Moreton
+  role     = "member"
+}
