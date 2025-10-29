@@ -58,7 +58,7 @@ resource "github_membership" "engineering_membership_natasha_myers" {
 }
 
 resource "github_membership" "engineering_membership_ramon_rodriguez" {
-  username = "ramonrodriguez-burendo"
+  username = "ramonrodriguez-burendo" // Ramon Rodriguez
   role     = "member"
 }
 
