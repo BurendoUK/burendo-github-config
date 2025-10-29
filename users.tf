@@ -126,3 +126,8 @@ resource "github_membership" "engineering_membership_chadrak_holondo" {
   username = "chadrakdev" // Chadrak Holondo
   role     = "member"
 }
+
+resource "github_membership" "engineering_membership_josh_sheffield" {
+  username = "Nin-Tendou" // Josh Sheffield
+  role     = "member"
+}
