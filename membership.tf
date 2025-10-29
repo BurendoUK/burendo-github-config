@@ -74,12 +74,6 @@ resource "github_team_membership" "engineering_membership_ramon_rodriguez" {
   role     = "member"
 }
 
-resource "github_team_membership" "engineering_membership_mauro_sorrentino" {
-  team_id  = github_team.engineering.id
-  username = "maurosorrentinoburendo"  // Mauro Sorrentino
-  role     = "member"
-}
-
 resource "github_team_membership" "engineering_membership_paul_walkington" {
   team_id  = github_team.engineering.id
   username = "paulwalkington" // Paul Walkington
